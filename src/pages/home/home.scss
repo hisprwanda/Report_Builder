@@ -1,0 +1,36 @@
+.home{
+    display:flex;
+    
+    .homeCard{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        border-radius: 10px;
+        height: 170px;
+        width: 362px;
+        margin-top: 50px;
+        margin-left: 50px;
+        cursor: pointer;
+
+
+
+        .title{
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .content{
+            font-size: 14;
+            color: #6A6A6A;
+        }
+
+        .link{
+            font-size: 16px;
+            font-weight: bold;
+            color: #2196F3;
+        }
+    }
+}
