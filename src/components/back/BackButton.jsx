@@ -6,7 +6,7 @@ function BackButton() {
   const linkTo = '/'
   const buttonLabel = 'Back to App Home'
   return (
-    <div className="back">
+    <div className="main-back-btn" >
       <Button name="Basic button" value="default" >
         <Link to={linkTo} style={{textDecoration:'none'}}>
           {'< '} {buttonLabel}

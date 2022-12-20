@@ -13,7 +13,7 @@ function Home() {
             <span className="content"> Navigate to Users app to change permissions. Roles define persmissions of User.</span>
             <span className="link"> Manager Users</span>
         </Link>
-        <Link to='report/new' className="homeCard" style={{ textDecoration: "none"}}>
+        <Link to='report' className="homeCard" style={{ textDecoration: "none"}}>
             <span className="title"> Report Format</span>
             <span className="content">Something about changing report formats.</span>
             <span className="link"> Edit Report Formats</span>

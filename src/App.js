@@ -6,8 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import New from "./pages/report/formats/New";
 import './style/styles.scss'
-import ReportHome from './pages/report/ReportHome';
-// import ReportHome from './pages/report/ReportHome';
+import ReportFormatsList from './pages/report/formats/ReportFormatsList';
 
 
 function App() {  
@@ -17,11 +16,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/">
-              <Route index element={<ReportHome />} />
+              <Route index element={<Home />} />
               <Route path="report">
-                <Route index element={<ReportHome />} />
+                <Route index element={<ReportFormatsList />} />
                 <Route path=":reportId" element={<Home />} />
-                <Route path="newReport" element={<New title="Add New Report" />}/>
+                <Route path="reports" element={<New title="Add New Report" />}/>
               </Route>
               
             </Route>
