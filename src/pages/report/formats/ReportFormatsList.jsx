@@ -6,14 +6,23 @@ import { Button } from '@dhis2-ui/button'
 import AddIcon from '@mui/icons-material/Add';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate  } from 'react-router-dom';
 
 const ReportFormatsList = () => {
+    const navigate = useNavigate();
+    
+    const openReportFormatForEdit = () => {
+        navigate('/report/report-edit');
+
+    }
+
+
   return (
     <div className='report'>
 
         <div className='bottom'>
             <BackButton className='back' />
-            
+
             <div className='top'>
                 <div className='title'>Saved Formats</div>
                 <Button name='Basic button' value='default'>
@@ -29,9 +38,6 @@ const ReportFormatsList = () => {
                         <TableCellHead>
                             
                         </TableCellHead>
-                        <TableCellHead>
-                            
-                        </TableCellHead>
                         
                     </TableRowHead>
                 </TableHead>
@@ -42,8 +48,8 @@ const ReportFormatsList = () => {
                             Format 1
                         </TableCell>
                         <TableCell className='action-btns'>
+                            <Button name='Basic button' value='default' onClick={openReportFormatForEdit}><EditIcon /> Edit </Button>
                             <Button name='Basic button' value='default'><PlayArrowIcon /> Preview </Button>
-                            <Button name='Basic button' value='default'><EditIcon /> Edit </Button>
                         </TableCell>
                     </TableRow>
                     <TableRow className='row'>
@@ -51,8 +57,8 @@ const ReportFormatsList = () => {
                             Format 2
                         </TableCell>
                         <TableCell  className='action-btns'>
-                            <Button name='Basic button' value='default'><PlayArrowIcon />  Preview </Button>
                             <Button name='Basic button' value='default'><EditIcon /> Edit </Button>
+                            <Button name='Basic button' value='default'><PlayArrowIcon />  Preview </Button>
                         </TableCell>
                         
                     </TableRow>
@@ -61,8 +67,8 @@ const ReportFormatsList = () => {
                             Format 3
                         </TableCell>
                         <TableCell  className='action-btns'>
-                            <Button name='Basic button' value='default'><PlayArrowIcon />  Preview </Button>
                             <Button name='Basic button' value='default'><EditIcon /> Edit </Button>
+                            <Button name='Basic button' value='default'><PlayArrowIcon />  Preview </Button>
                         </TableCell>
                         
                     </TableRow>

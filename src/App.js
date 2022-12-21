@@ -7,6 +7,7 @@ import Home from "./pages/home/Home";
 import New from "./pages/report/formats/New";
 import './style/styles.scss'
 import ReportFormatsList from './pages/report/formats/ReportFormatsList';
+import ReportEdit from './pages/report/edit/ReportEdit';
 
 
 function App() {  
@@ -21,6 +22,7 @@ function App() {
                 <Route index element={<ReportFormatsList />} />
                 <Route path=":reportId" element={<Home />} />
                 <Route path="reports" element={<New title="Add New Report" />}/>
+                <Route path="report-edit" element={<ReportEdit />}/>
               </Route>
               
             </Route>
