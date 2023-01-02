@@ -4,6 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import './report-edit.scss'
+import { Button } from '@dhis2-ui/button'
 
 const ReportEdit = () => {
   const [value, setValue] = React.useState('');
@@ -24,7 +25,9 @@ const ReportEdit = () => {
               Edit Format 1
             </div>
             <div className="btn">
-            <AddIcon /> Add Row
+            <Button name='Basic button' value='default'>
+                <AddIcon /> Add Row
+            </Button>
             </div>
         </div>
 
