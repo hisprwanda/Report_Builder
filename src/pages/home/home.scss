@@ -1,9 +1,11 @@
 .home{
     display:flex;
     justify-content: center;
-
+    
     .home_widgets{
         display: flex;
+        // width: 100%;
+
         .homeCard{
             display: flex;
             flex-direction: column;

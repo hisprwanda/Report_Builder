@@ -9,16 +9,40 @@ import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import GenerateReportModal from '../../components/modal/GenerateReportModal';
 import { Modal, ModalTitle, ModalContent, ModalActions } from '@dhis2-ui/modal'
+import { useConfig, useDataQuery } from '@dhis2/app-runtime'
+
+
+
+const myQuery = {
+  me: {
+      resource: 'me'
+  },
+}
 
 
 const Home = () => {
   const [hide, setHide] = useState(true)
+  const { loading, error, data } = useDataQuery(myQuery)
+  const { baseUrl, apiVersion } = useConfig()
 
   
-  return (
+  const openUsersDetails = (userId) =>{
+    console.log("User data: ",data.me.id)
+    window.open(`${baseUrl}/dhis-web-user/index.html#/users/edit/${data.me.id}`, '_blank')
+  }
+  
+  if (error) {
+      return <span>ERROR: {error.message}</span>
+  }
+
+  if (loading) {
+      return <span>Loading...</span>
+  }
+
+  return ( 
     <div className='home'>
         <div className="home_widgets">
-          <Link to="/" className="homeCard" style={{ textDecoration: "none"}}>
+          <Link className="homeCard" style={{ textDecoration: "none"}} onClick={openUsersDetails}>
               <span className="title"> User App</span>
               <span className="content"> Navigate to Users app to change permissions. Roles define persmissions of User.</span>
               <span className="link"> Manager Users</span>

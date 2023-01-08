@@ -2,9 +2,10 @@ import React from 'react'
 import { Button } from '@dhis2-ui/button'
 import { Link } from 'react-router-dom'
 
-function BackButton() {
-  const linkTo = '/'
-  const buttonLabel = 'Back to App Home'
+const BackButton = (props) =>{
+
+  const linkTo = props.linkTo
+  const buttonLabel = props.btnLabel
   return (
     <div className="main-back-btn" >
       <Button name="Basic button" value="default" >
@@ -14,6 +15,11 @@ function BackButton() {
       </Button>
     </div>
   )
+}
+
+BackButton.defaultProps = {
+  linkTo: "/",
+  btnLabel: 'Go Back'
 }
 
 export default BackButton

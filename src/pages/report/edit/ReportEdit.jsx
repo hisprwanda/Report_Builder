@@ -17,7 +17,7 @@ const ReportEdit = () => {
   return (
     <div className='report_edit'>
         <div className="back_btn">
-            <BackButton />
+            <BackButton linkTo='/report' btnLabel='Back to Formats List'/>
         </div>
 
         <div className="header">
