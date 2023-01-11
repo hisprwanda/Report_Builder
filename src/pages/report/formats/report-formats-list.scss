@@ -27,16 +27,35 @@
             border-radius: 10px;
 
             .row{
-                justify-content: space-between;
-                padding: 40px;
-                height: 60px;
-
-                .action-btns > Button{
-                    // padding: 20px;
-                    margin-left: 10px;
-                    float: right;
+                .action-btns {
+                    height: 60px;
+                    display: flex;
+                    justify-content: flex-end;
+                    Button{
+                        margin-left: 10px;
+                    }
+                }
+            }
+            .empty-row {
+                p {
+                    display: flex;
+                    // align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                    font-style: italic;
                 }
             }
         }
     }
+
+    .formats_list_modal{
+        display: flex;
+        .modal{
+
+            .formatTitleInput{
+                width: 100%;
+            }
+        }
+    }
+
 }
