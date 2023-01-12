@@ -1,3 +1,4 @@
+// Initial configurations of the DHIS2 APP
 const config = {
     type: 'app',
 
