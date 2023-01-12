@@ -60,7 +60,7 @@ const ReportFormatsList = () => {
     <div className='report'>
 
         <div className='bottom'>
-            <BackButton className='back' />
+            <BackButton className='back' btnLabel='Back Home'/>
 
             <div className='top'>
                 <div className='title'>Saved Formats</div>
@@ -121,7 +121,7 @@ const ReportFormatsList = () => {
                             </div>
                     
                             <input 
-                                className='formatTitleInput' 
+                                className='modalInput' 
                                 label="Form title" 
                                 name="defaultName"
                                 placeholder="Enter form Title"
