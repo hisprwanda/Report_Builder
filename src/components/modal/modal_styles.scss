@@ -46,13 +46,16 @@
                 
                 &:hover {
                     cursor: pointer;
-                    background-color: #A7D5FF;
-                    color: #fff;
-                    // margin-left: 20px;
                     transform: scale(1.15); 
                   }
-                
-            }
+
+                  
+                }
+                .recents{
+                    background-color: #A7D5FF;  // do this dynamically on hover/when selected
+                    color: #fff;   // do this dynamicall above on hover/when selected
+
+                }
 
         }
     }

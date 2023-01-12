@@ -25,8 +25,8 @@ export const GenerateReportModal = (props) => {
                         </div>
 
                         <div className="formats_btns">
-                        <span className="recents btn">Recent Formats <AccessTimeIcon className='icon' fontSize='small' /></span>
-                        <span className="new btn">New Formats <NoteAddIcon className='icon'  fontSize='small' /></span>
+                            <span className="recents btn">Recent Formats <AccessTimeIcon className='icon' fontSize='small' /></span>
+                            <span className="new btn">New Formats <NoteAddIcon className='icon'  fontSize='small' /></span>
                         </div>
 
                     </div>

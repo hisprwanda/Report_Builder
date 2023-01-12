@@ -108,8 +108,8 @@ const ReportEdit = () => {
             </div>
             ))
             :
-            <div>
-              <h3 style={{ fontStyle: 'italic', fontSize:19}}>No format rows available. Create rows for this format</h3>
+            <div className='empty_rows_msg'>
+              <p style={{ fontStyle: 'italic', fontSize:19}}>No format rows available. Create rows for this format</p>
             </div>
         }
 
