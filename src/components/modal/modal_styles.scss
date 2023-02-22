@@ -123,6 +123,10 @@
             height: 115px;
         }
 
+        .period_image{
+            
+        }
+
         .available_formats{
             display: flex;
             justify-content: space-between;
@@ -138,7 +142,7 @@
                 width: 83.77px;
                 height: 154px;
 
-                .format_image{
+                .format_image, .period_image{
                     transition: 0.3s all ease-in-out;
 
                     &:hover {
