@@ -6,6 +6,8 @@ import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Button } from '@dhis2-ui/button'
 import './modal_styles.scss'
+import { useNavigate  } from 'react-router-dom';
+
 
 export const GenerateReportModal = (props) => {
     const [hide, setHide] = useState(true)
@@ -25,8 +27,8 @@ export const GenerateReportModal = (props) => {
                         </div>
 
                         <div className="formats_btns">
-                            <span className="recents btn">Recent Formats <AccessTimeIcon className='icon' fontSize='small' /></span>
-                            <span className="new btn">New Formats <NoteAddIcon className='icon'  fontSize='small' /></span>
+                            <span className="recents btn">Recents Formats <AccessTimeIcon className='icon' fontSize='small' /></span>
+                            <span className="new btn" onClick={openFormatsList}>New Formats <NoteAddIcon className='icon'  fontSize='small'/></span>
                         </div>
 
                     </div>
