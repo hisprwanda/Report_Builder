@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import './style/styles.scss'
 import ReportFormatsList from './pages/report/formats/ReportFormatsList';
 import ReportEdit from './pages/report/edit/ReportEdit';
+import Preview from './pages/report/formats/Preview';
 
 
 
@@ -22,7 +23,6 @@ function App() {
               <Route path="report">
                 <Route index element={<ReportFormatsList />} />
                 <Route path=":reportId" element={<Home />} />
-                <Route path="reports" element={<New title="Add New Report" />}/>
                 <Route path="report-edit" element={<ReportEdit />}/>
                 <Route path="report-preview" element={<Preview />}/>
               </Route>
