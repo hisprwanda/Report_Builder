@@ -19,6 +19,7 @@ import { useConfig, useDataQuery } from '@dhis2/app-runtime'
 import { useNavigate  } from 'react-router-dom';
 
 
+// TODO: replace this with the correct querry
 const myQuery = {
   me: {
       resource: 'me'

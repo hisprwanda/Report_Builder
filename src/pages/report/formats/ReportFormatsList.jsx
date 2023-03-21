@@ -40,6 +40,7 @@ import { Modal, ModalTitle, ModalContent, ModalActions } from '@dhis2-ui/modal'
 
         };
 
+        // Adding a new format to the list
         const addFormat = (e) => {
             // e.preventDefault()
             if (!formatTitle) {
@@ -59,6 +60,7 @@ import { Modal, ModalTitle, ModalContent, ModalActions } from '@dhis2-ui/modal'
 
         };
 
+        // Deleting a format from the list
         const deleteFormat = (id) => {
             setFormats(formats.filter((format) => format.id !== id));
         };
