@@ -1,7 +1,6 @@
 import{useState} from 'react';
-import './Popup.scss'
+import './preview.scss'
 import Form from './Form'
-import Logo  from './Logo.jpeg';
 
 
 
@@ -16,14 +15,11 @@ const Preview = () => {
    
   return (
     <>
-      <div className='Preview'> 
+      <div className='preview'> 
        <Form className='Form' onclose={handleOnclose} visible={showForm}/>
       </div>
     </>
   );
 };
-
-
-  
 
 export default Preview;
