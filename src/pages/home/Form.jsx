@@ -1,8 +1,66 @@
-import React ,{ useRef }from 'react';
+import React from 'react';
 import './form.scss'
 import Logo  from '../../assets/images/moh_logo.jpeg';
-import { useReactToPrint } from "react-to-print";
+import { useDataQuery, useAlert } from "@dhis2/app-runtime";
+import { CircularLoader } from "@dhis2/ui";
+
+
+// TODO: replace this with the correct querry
+const reportQuery = {
+    me: {
+      resource: "me",
+      params: {
+        fields: ['username, surname, name, organisationUnits[id,name]'],
+      }
+    },
+    dataValueSets: {
+        resource: 'dataValueSets',
+        params: {
+          dataSet: 'XesKc0UNEKj',
+          period: '202304',
+          orgUnit: 'cTBc6Cl0jM8',
+        },
+    },
+  }
+
+
+  
 const Form = ({visible }) =>{
+
+    // A dynamic alert to communicate success or failure 
+  const { show } = useAlert(
+    ({ message }) => message,
+    ({ status }) => {
+        if (status === 'success') return { success: true }
+        else if (status === 'error') return { critical: true }
+        else return {}
+    } )
+
+  // run the querry
+  const { loading, error, data, refetch } = useDataQuery(reportQuery, {
+      variables: { page: 0, startDate: '2023-02-01', endDate: '2023-06-01', orgUnitID: 'OujzhM1lgN5', pageSize: 5, ouMode: 'SELECTED' },
+  })
+
+  if (error) { return <span>ERROR: {error.message}</span> }
+
+
+  //TODO: center this loader and make it a % filling line if possible.
+  if (loading) {
+      return (
+          <>
+              <CircularLoader />
+          </>
+      )
+  }
+
+  if (data) {  
+      const message = 'SUCCESS: Successfully retrieved datasets values'
+      // TODO: do your logic here
+      show({ message, status: 'success' })
+      console.log("*** valuesetsss: ", data.dataValueSets.dataValues);
+  }
+  
+
 
     return (
         <div className='monthly_report_form'>
@@ -34,7 +92,7 @@ const Form = ({visible }) =>{
                     <tbody>
                         <><tr>
                             <td style={{ maxWidth: "100px" }}>1.Facility Name / <i> Nom de la formation sanitaire</i></td>
-                            <td class="special1"></td>
+                            <td class="special1">{data.me.name}</td>
                             <td>3.Year/<i>Annee</i></td>
                             <td class="special5"></td>
                         </tr><tr>
@@ -75,12 +133,19 @@ const Form = ({visible }) =>{
                 </table>
             </div>
 
+            {/* OPD */}
             <div className='outpatient_section'>
+                {data.dataValueSets.dataValues.map((dataValue) =>(
+                    <p>
+                    {dataValue.dataElement == 'GpQ2x3ZDHTe' && dataValue.categoryOptionCombo == 'BNTdWBe0N1F' ? dataValue.value : ''}
+                    </p>
+                ))}
                 <table align="center" className='outpatient'>
                     <thead>
                         <th colSpan="6" class="specialth"> II. Outpatient Consultations/<i class="isp">Consultations Externes</i></th>
                     </thead>
                     <tbody>
+
                         <td style={{ width: "578px" }} class="tabletd1">
                             <td style={{ width: "553px" }}>
                                 <tr>
@@ -99,10 +164,10 @@ const Form = ({visible }) =>{
                                 </tr>
                                 <tr>
                                     <td>New cases (NC)/ <i>Nouveaux cas</i></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
+                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
+                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
+                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
                                 </tr>
                                 <tr>
                                     <td>Old cases/ <i>Anciens cas</i></td>
@@ -119,9 +184,9 @@ const Form = ({visible }) =>{
                                 <th style={{ maxWidth: "313px" }}>B) Health insurance status of new cases/<i> Assurance maladies pour nouveaux cas</i></th>
                                 <th style={{ width: "104px" }}>TOTAL</th>
                             </tr>
-                            <tr>
+                            <tr>	
                                 <td style={{ maxWidth: "313px" }}>Insured (Mutuelle or other insurance members)/<i> Assurés (Mutuelle ou autres assurances)</i></td>
-                                <td style={{ width: "104px" }}></td>
+                                <td style={{ width: "104px" }}>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XnTgGzEfdCP'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
                             </tr>
                         </td>
                     </tbody>
@@ -861,7 +926,7 @@ const Form = ({visible }) =>{
                     </tbody>
                 </table>
             </div>
-
+{/* 
             <div className='malaria_section'>
                 <table className="malaria">
                     <thead>
@@ -5017,9 +5082,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> */}
 
-            <button className='input' onclick={onclose}>cancel</button>
+            <button className='input' onclick={onclose}>Cancel</button>
             <button className='primary'>Download</button>
         </div>
     )}

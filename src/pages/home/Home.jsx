@@ -17,24 +17,18 @@ import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import GenerateReportModal from "../../components/modal/GenerateReportModal";
 import { Modal, ModalTitle, ModalContent, ModalActions } from "@dhis2-ui/modal";
-import { useConfig, useDataQuery } from "@dhis2/app-runtime";
+import { useConfig, useDataQuery, useAlert } from "@dhis2/app-runtime";
 import { useNavigate } from "react-router-dom";
 
-// TODO: replace this with the correct querry
-const myQuery = {
-  me: {
-    resource: "me",
-  },
-};
 
 const Home = () => {
   const [hide, setHide] = useState(true);
-  const { loading, error, data } = useDataQuery(myQuery);
   const { baseUrl, apiVersion } = useConfig();
   const navigate = useNavigate();
-  const [onChoosingFormats, setOnChoosingFormats] = useState(true);
   const [chosenFormat, setChosenFormat] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [onChoosingFormats, setOnChoosingFormats] = useState(true);
+
 
   const openUsersDetails = (userId) => {
     console.log("User data: ", data.me.id);
@@ -62,44 +56,25 @@ const Home = () => {
   ]);
 
   const handleFormatSelection = (format) => {
-    console.log(format);
     setOnChoosingFormats(false);
     setChosenFormat(format);
   };
 
   const handleModalCancel = () => {
-    // setOnChoosingFormats(false)
     setChosenFormat(null);
     setHide(true);
   };
-  const handleModalCancel1 = () => {
-    setChosenFormat(null);
-    setHide(true);
-    window.location.reload(true);
-    
-  };
+ 
 
-  if (error) {
-    return <span>ERROR: {error.message}</span>;
-  }
 
-  if (loading) {
-    return <span>Loading...</span>;
-  }
 
   const handleImageClick = (period) => {
-    console.log(period);
-    if (period.periodTitle === "Monthly") {
-      //handleModalCancel();
-      console.log("hello");
-      setShowModal(true);
-      //setHide(true)
 
-      //setSelectedPeriod(period)
-    } else {
-      setShowModal(false);
+    if (period.periodTitle === "Monthly") {
+      setShowModal(true);
     }
   };
+
   return (
     <div className="home">
       <div className="home_widgets">
@@ -242,23 +217,22 @@ const Home = () => {
             </div>
           </ModalContent>
         </Modal>
+        
         {showModal && (
-          <Modal className="generate_report_modal" hide={hide} large closeButton>
-            
-          
-          <ModalContent >
-            <div>
-              <div className="modal">
-                <div className="modal_header">
-                  
-                    </div>
-                    <div>
-                     < Preview/>
-                    </div>
+          <Modal className="report_form_modal" hide={hide} large closeButton>  
+            <ModalContent >
+              <div>
+                <div className="modal">
+                  <div className="modal_header">
                     
-                </div>  
-            </div>
-          </ModalContent>
+                      </div>
+                      <div>
+                      < Preview/>
+                      </div>
+
+                  </div>  
+              </div>
+            </ModalContent>
         </Modal>
         )}
       </div>
