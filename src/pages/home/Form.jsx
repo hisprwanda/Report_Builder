@@ -4,6 +4,8 @@ import Logo  from '../../assets/images/moh_logo.jpeg';
 import { useDataQuery, useAlert } from "@dhis2/app-runtime";
 import { CircularLoader } from "@dhis2/ui";
 import { Close } from '@mui/icons-material';
+import OutPatient from '../../components/report_sections/OutPatient';
+import Malaria from '../../components/report_sections/Malaria';
 
 
 
@@ -19,8 +21,8 @@ const reportQuery = {
     dataValueSets: {
         resource: 'dataValueSets',
         params: {
-          dataSet: 'X1XOMlrgsFg',
-          period: '202304',
+          dataSet: 'XesKc0UNEKj',
+          period: '202305',
           orgUnit: 'cTBc6Cl0jM8',
         },
     },
@@ -60,7 +62,7 @@ const Form = ({visible }) =>{
       const message = 'SUCCESS: Successfully retrieved datasets values'
       // TODO: do your logic here
       show({ message, status: 'success' })
-      console.log("*** valuesetsss: ", data.dataValueSets.dataValues);
+      console.log("*** valuesets: ", data.dataValueSets.dataValues);
   }
 
 
@@ -72,13 +74,13 @@ const Form = ({visible }) =>{
                 <header className='section'>
                     <img src={Logo}></img>
                     <p>
-                    <h1>Health Centers Monthly HMIS Report</h1>
+                    <h1>District Hospital Monthly HMIS Report</h1>
                     <h2><i>Rapport Mensuel SIS de l’Hôpital de district</i></h2>
                     </p>
                 </header>
             </div>
-
-{/*            <div className='identification_section'>
+            
+            <div className='identification_section'>
                 <table align="center">
                     <thead>
                         <tr>
@@ -120,7 +122,7 @@ const Form = ({visible }) =>{
                         <>
                             <tr>
 
-                                <td class="special11">1.Name of Health Center Manager/<i>Nom du Titulaire</i></td>
+                                <td class="special11">1.Name of Director General / <i> Nom du Directeur General</i></td>
                                 <td class="special1"></td>
                                 <td class="special11">3.Date of Data Entry in HMIS/<i>Date d'encodage dans HMIS</i> </td>
                                 <td class="special1"></td>
@@ -135,1041 +137,11 @@ const Form = ({visible }) =>{
                     </tbody>
                 </table>
             </div>
-*/}
-            {/* OPD */}
-{/*            <div className='outpatient_section'>
-                {data.dataValueSets.dataValues.map((dataValue) =>(
-                    <p>
-                    {dataValue.dataElement == 'GpQ2x3ZDHTe' && dataValue.categoryOptionCombo == 'BNTdWBe0N1F' ? dataValue.value : ''}
-                    </p>
-                ))}
-                <table align="center" className='outpatient'>
-                    <thead>
-                        <th colSpan="6" class="specialth"> II. Outpatient Consultations/<i class="isp">Consultations Externes</i></th>
-                    </thead>
-                    <tbody>
 
-                        <td style={{ width: "578px" }} class="tabletd1">
-                            <td style={{ width: "553px" }}>
-                                <tr>
-                                    <th colSpan="5">A) Outpatient Morbidity summary table/ <i>Tableau synthétique: Consultations externs</i></th>
-                                </tr>
-                                <tr>
-                                    <td rowSpan="2">Outpatient visits/ <i>Consultations Externes </i></td>
-                                    <td colSpan="2">&lt; 5 Yrs</td>
-                                    <td colSpan="2" style={{ maxWidth: "40px" }}> 5 years and above</td>
-                                </tr>
-                                <tr>
-                                    <td>M</td>
-                                    <td>F</td>
-                                    <td>M</td>
-                                    <td>F</td>
-                                </tr>
-                                <tr>
-                                    <td>New cases (NC)/ <i>Nouveaux cas</i></td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='T6H8cO1Tr5t'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                                </tr>
-                                <tr>
-                                    <td>Old cases/ <i>Anciens cas</i></td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='o73Sit5drOc'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='o73Sit5drOc'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='o73Sit5drOc'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                                    <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='o73Sit5drOc'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                                </tr>
-                            </td>
+            <OutPatient  data={data} />
+            <Malaria data={data} />
 
-                        </td>
-                        <td class="tabletd2" style={{ width: "40%", }}>
-                            <tr>
-                                <th style={{ maxWidth: "313px" }}>B) Health insurance status of new cases/<i> Assurance maladies pour nouveaux cas</i></th>
-                                <th style={{ width: "104px" }}>TOTAL</th>
-                            </tr>
-                            <tr>	
-                                <td style={{ maxWidth: "313px" }}>Insured (Mutuelle or other insurance members)/<i> Assurés (Mutuelle ou autres assurances)</i></td>
-                                <td style={{ width: "104px" }}>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XnTgGzEfdCP'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            </tr>
-                        </td>
-                    </tbody>
-                </table>
-                <table align="center" className='referrals'>
-                    <thead>
-                        <th>C)Refferals/<i>Transferts</i></th>
-                        <th>Total</th>
-                        <th>
-                            D)Origin of Outpatient/<i>D) Origine de patients Ambulatoires(OPD)</i>
-                        </th>
-                        <th>Total</th>
-                    </thead>
-                    <tbody>
-                        <><tr>
-                            <td>1.Referred to Hospital/<i>Referes a l'hopital</i></td>
-                                <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='vXwpoA3iex2'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td>1.New cases from the cactchment area(Zone)/<i>Nouveaux cas de la zone de Rayonnement(Zone)</i></td>
-                                <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='qyvH5Y73w85'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                            <tr>
-                                <td>2.Counter referrals recieved / <i>Contres referes recues</i></td>
-                                <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='GpQ2x3ZDHTe'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                                <td>2.New cases from out of the Catchment area/<i>Nouveaux cas (hors zone)</i></td>
-                                <td>{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sOXjcgk31XK'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            </tr></>
-
-                    </tbody>
-                </table>
-                <table align="center" className='newCasesOPD'>
-                    <thead>
-                        <th colspan="3">E) New cases of priority health problems in OPD/<i>Nouveaux cas de maladies (Causes majeures de Consultation)</i></th>
-                        <th colspan="2" class="special1">Under 5 years </th>
-                        <th colSpan="2" class="special1">&gt;= 5 Year</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="special">#</td>
-                            <td>Diagnosis /<i>Diagnostique</i></td>
-                            <td class="special2">ICD-11</td>
-                            <th class="special5">M</th>
-                            <th class="special5">F</th>
-                            <th class="special5">M</th>
-                            <th class="special5">F</th>
-                        </tr>
-                        <tr>
-                            <td class="special">1.</td>
-                            <td>Diarrhea diseases/<i>Maladies diarrheiques</i></td>
-                            <td class="special2">1A40.Z</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='eK2A6GCkjF8'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='eK2A6GCkjF8'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='eK2A6GCkjF8'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='eK2A6GCkjF8'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">2.</td>
-                            <td>Intestinal parasites others/<i>Parasites intestinale autres</i></td>
-                            <td class="special2">B65-B83</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XWrSxfUvE6X'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XWrSxfUvE6X'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XWrSxfUvE6X'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XWrSxfUvE6X'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">3.</td>
-                            <td>Snake Bite/<i>Morsure de serpent</i></td>
-                            <td class="special2">8B42</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='oSCOWUn8rVC'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='oSCOWUn8rVC'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='oSCOWUn8rVC'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='oSCOWUn8rVC'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">4.</td>
-                            <td>Amebiasis</td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='JOT6pLyw6JD'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='JOT6pLyw6JD'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='JOT6pLyw6JD'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='JOT6pLyw6JD'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">5.</td>
-                            <td>Cysticercosis</td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VzX0sbtscAf'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VzX0sbtscAf'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VzX0sbtscAf'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VzX0sbtscAf'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">6.</td>
-                            <td>Schistosomiasis</td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='f6HIkceQiz0'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='f6HIkceQiz0'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='f6HIkceQiz0'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='f6HIkceQiz0'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">7.</td>
-                            <td>Pneumonia/<i>Pneumonie</i></td>
-                            <td class="special2">CA40.Z</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xU8wx7P4MhG'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xU8wx7P4MhG'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xU8wx7P4MhG'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xU8wx7P4MhG'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">8.</td>
-                            <td>Bronchitis</td>
-                            <td class="special2">CA20</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kq8mzlj7MZi'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kq8mzlj7MZi'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kq8mzlj7MZi'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kq8mzlj7MZi'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">9.</td>
-                            <td>other Acute Resiratory diseases/<i>Maladies aigues des voies respiratoires autres</i></td>
-                            <td class="special2">CA07.0</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pvE8GT5UvZ6'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pvE8GT5UvZ6'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pvE8GT5UvZ6'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pvE8GT5UvZ6'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">10.</td>
-                            <td>Acute Malnutrition/<i>Malnutrition Aigue</i></td>
-                            <td class="special2">5B7Z</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='QKN6oLReYyD'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='QKN6oLReYyD'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='QKN6oLReYyD'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='QKN6oLReYyD'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">11.</td>
-                            <td>HIV/AIDS related opportunustic Infection/<i>Infection opportuniste du VIH</i></td>
-                            <td class="special2">1C62.3</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XJ422jsvxns'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XJ422jsvxns'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XJ422jsvxns'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XJ422jsvxns'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">12.</td>
-                            <td>Gastritis and doudentitis/<i>Gastrite et Duodenite</i></td>
-                            <td class="special2">DA51</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">13.</td>
-                            <td>Scabies(Crusted or classic scabies)</td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='nCL3Tsb7Yjs'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">14.</td>
-                            <td>Tungaiasis/Jigger Disease (mavunja)</td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='FB1arDvyK86'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='FB1arDvyK86'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='FB1arDvyK86'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='FB1arDvyK86'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>                        </tr>
-                        <tr>
-                            <td class="special">15.</td>
-                            <td>Other Skin Diseases/<i>Maladies de la peau</i></td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='X7o6DuDLBMe'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='X7o6DuDLBMe'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='X7o6DuDLBMe'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='X7o6DuDLBMe'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">16.</td>
-                            <td>Abscesses/<i>Abcès</i></td>
-                            <td class="special2">D64.9</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='gYg72JzdZd4'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='gYg72JzdZd4'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='gYg72JzdZd4'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='gYg72JzdZd4'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">17.</td>
-                            <td>Anemia/<i> Anémie (confirmée) </i></td>
-                            <td class="special2">D64.9</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yFqMWTHmVzC'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yFqMWTHmVzC'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yFqMWTHmVzC'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yFqMWTHmVzC'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">18.</td>
-                            <td>Viral hepatitis B,C CHRONIC/<i>Hépatite B,C Chronique</i></td>
-                            <td class="special2">(B15-B19)</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EdC0G0NQsXW'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EdC0G0NQsXW'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EdC0G0NQsXW'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EdC0G0NQsXW'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">19.</td>
-                            <td>Diseases of Urinary tract system/ <i>Maladies du système urinaire</i></td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='A5Rhph7db4Y'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='A5Rhph7db4Y'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='A5Rhph7db4Y'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='A5Rhph7db4Y'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">20.</td>
-                            <td>Bone and joint Diseases, Other than fractures/ <i>Maladies des os et des articulations, auters que les traumatismes</i></td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yDsS6F5lrqg'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yDsS6F5lrqg'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yDsS6F5lrqg'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yDsS6F5lrqg'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">21.</td>
-                            <td>Bone and Joint Fractures/ <i>Facture ousseuse et articulaire</i></td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='MHRf4kWhLVO'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='MHRf4kWhLVO'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='MHRf4kWhLVO'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='MHRf4kWhLVO'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">22.</td>
-                            <td>Physical traumas, other than fractures/ <i>Traumatismes Physiques, Autres que les Fractures</i></td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sF9pFihMO6t'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sF9pFihMO6t'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sF9pFihMO6t'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sF9pFihMO6t'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">23.</td>
-                            <td>Sepsis/ <i>Septicémie </i></td>
-                            <td class="special2">IG40, 1g41</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='O6YNOECR7FX'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='O6YNOECR7FX'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='O6YNOECR7FX'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='O6YNOECR7FX'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">24.</td>
-                            <td>Goitre/ <i>Goitre </i></td>
-                            <td class="special2">5A01.Z</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='B6S0YcQHyZ3'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='B6S0YcQHyZ3'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='B6S0YcQHyZ3'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='B6S0YcQHyZ3'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">25.</td>
-                            <td>Gynecological problems/ <i>Problèmes gynécologiques</i></td>
-                            <td class="special2"></td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ke7uV6HnkG2'&&dataValue.categoryOptionCombo=='FCdiaRlPumY'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ke7uV6HnkG2'&&dataValue.categoryOptionCombo=='G0576RJmv6Y'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ke7uV6HnkG2'&&dataValue.categoryOptionCombo=='aqLxpqBHcWN'?dataValue.value:''}</span>))}</td>
-                            <td class="special5">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ke7uV6HnkG2'&&dataValue.categoryOptionCombo=='zKiAxbqZCjx'?dataValue.value:''}</span>))}</td>
-                        </tr>
-
-
-                    </tbody>
-                </table>
-                <table align="center" className='eyeOralEar'>
-                    <thead>
-                        <th colspan="3">F)Eye, oral and ear diseases /<i>Les Maladies Oculaires, Orales et oreille </i></th>
-                        <th colspan="6" style={{ width: '160px', textAlign: 'center' }}>New cases/<i>New cases</i></th>
-
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="special"></td>
-                            <td></td>
-                            <td></td>
-                            <th colSpan={"2"}>0-19 yrs </th>
-                            <th colSpan={"2"}>20-39 yrs</th>
-                            <th colSpan={"2"}>&gt;= 40 Yrs</th>
-
-                        </tr>
-                        <tr>
-                            <td class="special"></td>
-                            <th></th>
-                            <td></td>
-                            <th class="special1">M</th>
-                            <th class="special1">F</th>
-                            <th class="special1">M</th>
-                            <th class="special1">F</th>
-                            <th class="special1">M</th>
-                            <th class="special1">F</th>
-                        </tr>
-                        <tr>
-                            <th class="special">a</th>
-                            <th>Eye diseases /<i>Maladies Oculaires</i></th>
-                            <td class="special2"></td>
-                            <td colSpan={"6"} class="special1"></td>
-
-                        </tr>
-                        <tr>
-                            <td class="special">1.</td>
-                            <td>Glaucoma/<i> Glaucome</i></td>
-                            <td class="special2">H40</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iKkD3Bii8lf'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iKkD3Bii8lf'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iKkD3Bii8lf'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iKkD3Bii8lf'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iKkD3Bii8lf'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iKkD3Bii8lf'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">2.</td>
-                            <td>Cataract/<i>Cataracte </i></td>
-                            <td class="special2">H29.9</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U8CRxlniaaV'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U8CRxlniaaV'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U8CRxlniaaV'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U8CRxlniaaV'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U8CRxlniaaV'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U8CRxlniaaV'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">3.</td>
-                            <td>Refractive error/<i>Erreurs de réfraction</i></td>
-                            <td class="special2">H52.7</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EwOOlIAgUpk'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EwOOlIAgUpk'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EwOOlIAgUpk'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EwOOlIAgUpk'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EwOOlIAgUpk'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='EwOOlIAgUpk'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">4.</td>
-                            <td>Pinguecula/<i> Pinguécula</i></td>
-                            <td class="special2">9A61.0</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ar2OQCEUZwR'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ar2OQCEUZwR'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ar2OQCEUZwR'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ar2OQCEUZwR'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ar2OQCEUZwR'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ar2OQCEUZwR'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">5.</td>
-                            <td>Uveitis/<i>Uvéite</i></td>
-                            <td class="special2">H20.9</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='paQpaEQ0POH'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='paQpaEQ0POH'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='paQpaEQ0POH'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='paQpaEQ0POH'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='paQpaEQ0POH'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='paQpaEQ0POH'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">6.</td>
-                            <td>Presbyopia/<i>presbytie</i></td>
-                            <td class="special2"></td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='afgUZwsO5R2'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='afgUZwsO5R2'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='afgUZwsO5R2'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='afgUZwsO5R2'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='afgUZwsO5R2'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='afgUZwsO5R2'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">7.</td>
-                            <td>Diabetic retinopathy/<i> Rétinopathie diabétique</i></td>
-                            <td class="special2">9B71.0Z</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Xs8yYf3DEfO'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Xs8yYf3DEfO'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Xs8yYf3DEfO'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Xs8yYf3DEfO'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Xs8yYf3DEfO'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Xs8yYf3DEfO'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">8.</td>
-                            <td>Retinopathy of Prematurity/<i>Retinopathie chez les prématurés </i></td>
-                            <td class="special2">9B71.3</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TDRDomKx8hX'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TDRDomKx8hX'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TDRDomKx8hX'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TDRDomKx8hX'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TDRDomKx8hX'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TDRDomKx8hX'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">9.</td>
-                            <td>Allergic Conjunctivitis/<i>Conjonctivite Allergique</i></td>
-                            <td class="special2">9A60.02</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='CeQh0F7B2gF'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='CeQh0F7B2gF'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='CeQh0F7B2gF'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='CeQh0F7B2gF'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='CeQh0F7B2gF'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='CeQh0F7B2gF'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">10.</td>
-                            <td>Infectious Conjunctivitis/<i>Infection conjonctivale</i></td>
-                            <td class="special2">9A60.Y</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VPPrAdlpe3o'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VPPrAdlpe3o'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VPPrAdlpe3o'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VPPrAdlpe3o'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VPPrAdlpe3o'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='VPPrAdlpe3o'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">11.</td>
-                            <td>Eye trauma/<i>Traumatisme occulaire</i></td>
-                            <td class="special2">S05.9</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ck1QaxpJPnB'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ck1QaxpJPnB'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ck1QaxpJPnB'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ck1QaxpJPnB'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ck1QaxpJPnB'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ck1QaxpJPnB'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">12.</td>
-                            <td>Pterygium/<i>Ptérygion</i></td>
-                            <td class="special2">9A61.1</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='zgfl9U3O9BF'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='zgfl9U3O9BF'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='zgfl9U3O9BF'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='zgfl9U3O9BF'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='zgfl9U3O9BF'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='zgfl9U3O9BF'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">13.</td>
-                            <td>Trachoma</td>
-                            <td class="special2"></td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iAbH7xnY5XJ'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iAbH7xnY5XJ'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iAbH7xnY5XJ'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iAbH7xnY5XJ'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iAbH7xnY5XJ'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iAbH7xnY5XJ'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">14.</td>
-                            <td>Other Eye diseases/<i>Autres maladies occulaires </i></td>
-                            <td class="special2">H57.9</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='tJSrZYc6srk'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='tJSrZYc6srk'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='tJSrZYc6srk'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='tJSrZYc6srk'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='tJSrZYc6srk'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='tJSrZYc6srk'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <th class="special">B</th>
-                            <th>Diseases of the ear<i></i></th>
-                            <td class="special2"></td>
-                            <td colSpan={"6"} class="special1"></td>
-
-                        </tr>
-                        <tr>
-                            <td class="special">1.</td>
-                            <td>Otitis externa, unspecified/<i> Otitis externa, unspecified</i></td>
-                            <td class="special2">AA3Z</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='YRfwK3ZsxSs'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='YRfwK3ZsxSs'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='YRfwK3ZsxSs'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='YRfwK3ZsxSs'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='YRfwK3ZsxSs'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='YRfwK3ZsxSs'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">2.</td>
-                            <td>Disorders of external ear, unspecified/<i>Troubles de l'oreille externe, non spécifiés </i></td>
-                            <td class="special2"></td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OW3uHKyWNQp'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OW3uHKyWNQp'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OW3uHKyWNQp'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OW3uHKyWNQp'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OW3uHKyWNQp'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OW3uHKyWNQp'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">3.</td>
-                            <td>Suppurative otitis media, unspecified/ <i>Otite moyenne suppurée, non spécifié</i></td>
-                            <td class="special2"></td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='lwLkuthVHh6'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='lwLkuthVHh6'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='lwLkuthVHh6'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='lwLkuthVHh6'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='lwLkuthVHh6'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='lwLkuthVHh6'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">4.</td>
-                            <td>Hearing impairment/ deafness/<i>Déficience auditive/surdité </i></td>
-                            <td class="special2">AA9Z</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='jM63yeDqpD9'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='jM63yeDqpD9'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='jM63yeDqpD9'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='jM63yeDqpD9'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='jM63yeDqpD9'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='jM63yeDqpD9'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">5.</td>
-                            <td>Acute mastoiditis/ <i>Acute mastoiditis</i></td>
-                            <td class="special2">AB52</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='bPK2k469B2J'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='bPK2k469B2J'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='bPK2k469B2J'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='bPK2k469B2J'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='bPK2k469B2J'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='bPK2k469B2J'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">6.</td>
-                            <td>Chronic mastoiditis/<i>Mastoïdite Chronique </i></td>
-                            <td class="special2">AB11.0</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='umCrdXiI3q1'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='umCrdXiI3q1'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='umCrdXiI3q1'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='umCrdXiI3q1'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='umCrdXiI3q1'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='umCrdXiI3q1'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">7.</td>
-                            <td>Other ear diseases/ <i>Autres maladies de l’Oreille</i></td>
-                            <td class="special2">AB11.1</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kqypSvvoCgm'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kqypSvvoCgm'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kqypSvvoCgm'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kqypSvvoCgm'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kqypSvvoCgm'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kqypSvvoCgm'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special"><b>C</b></td>
-                            <th>Oral diseases</th>
-                            <td class="special2"></td>
-                            <td colSpan={"6"} class="special1"></td>
-
-                        </tr>
-                        <tr>
-                            <td class="special">1.</td>
-                            <td>Periodontal disease/<i> Maladies pérodontales </i></td>
-                            <td class="special2">K05</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Dir2aqXjQH8'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Dir2aqXjQH8'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Dir2aqXjQH8'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Dir2aqXjQH8'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Dir2aqXjQH8'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Dir2aqXjQH8'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">2.</td>
-                            <td>Disorders of tooth development and eruption (Excl.: embedded and impacted teeth)/<i>Troubles du développement et eruption dentaire</i></td>
-                            <td class="special2">K00</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F3O5uCCDZfa'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F3O5uCCDZfa'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F3O5uCCDZfa'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F3O5uCCDZfa'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F3O5uCCDZfa'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F3O5uCCDZfa'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">3.</td>
-                            <td>Embedded and impacted teeth/<i> Dents encarnées et impactées </i></td>
-                            <td class="special2">K01</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TrNTVyIG37E'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TrNTVyIG37E'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TrNTVyIG37E'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TrNTVyIG37E'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TrNTVyIG37E'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='TrNTVyIG37E'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">4.</td>
-                            <td>Dental caries/<i> Carrie dentaire </i></td>
-                            <td class="special2">K02</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fGg16FaXK9y'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fGg16FaXK9y'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fGg16FaXK9y'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fGg16FaXK9y'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fGg16FaXK9y'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fGg16FaXK9y'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">5.</td>
-                            <td>Other diseases of hard tissues of teeth/<i> Autres maladies de l’email dentaire</i></td>
-                            <td class="special2">K03</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='cWyleRkrFpS'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='cWyleRkrFpS'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='cWyleRkrFpS'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='cWyleRkrFpS'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='cWyleRkrFpS'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='cWyleRkrFpS'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">6.</td>
-                            <td>Diseases of pulp and periapical tissues/<i>Maladies de la pulpe et couronne dentaire</i></td>
-                            <td class="special2">K04</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OABaSfMc9Cu'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OABaSfMc9Cu'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OABaSfMc9Cu'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OABaSfMc9Cu'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OABaSfMc9Cu'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OABaSfMc9Cu'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">7.</td>
-                            <td>Acute gingivitis/<i> Autre gencivite</i></td>
-                            <td class="special2">K05</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yyPnH5l6ISI'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yyPnH5l6ISI'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yyPnH5l6ISI'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yyPnH5l6ISI'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yyPnH5l6ISI'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yyPnH5l6ISI'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">8.</td>
-                            <td>Other disorders of gingiva and edentulous alveolar ridge/<i> Autres troubles de gencives et de la cavité alvéolaire</i></td>
-                            <td class="special2">K06</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='PpAJDuEcoYL'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='PpAJDuEcoYL'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='PpAJDuEcoYL'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='PpAJDuEcoYL'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='PpAJDuEcoYL'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='PpAJDuEcoYL'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">9.</td>
-                            <td>Dentofacial anomalies [including malocclusion]/<i>Anomalies dentofacial [y compris les anomalies d’occlusion]</i></td>
-                            <td class="special2">K07</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U7wo7X5IkUw'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U7wo7X5IkUw'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U7wo7X5IkUw'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U7wo7X5IkUw'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U7wo7X5IkUw'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='U7wo7X5IkUw'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">10.</td>
-                            <td>Other Teeth and oro-buccal cavity diseases/<i> Autre Infections de dents et de la cavité buccale</i></td>
-                            <td class="special2">K08.9</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sreK0bMzMko'&&dataValue.categoryOptionCombo=='kdmS7zvhGuL'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sreK0bMzMko'&&dataValue.categoryOptionCombo=='XBiYp3AjoeR'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sreK0bMzMko'&&dataValue.categoryOptionCombo=='rF2VMwZ8JpO'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sreK0bMzMko'&&dataValue.categoryOptionCombo=='an6vscaUk16'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sreK0bMzMko'&&dataValue.categoryOptionCombo=='kLjlM4XxvKP'?dataValue.value:''}</span>))}</td>
-                            <td class="special1">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='sreK0bMzMko'&&dataValue.categoryOptionCombo=='ANrxW4pIIP6'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table align='center' className='dentalProcedures'>
-                    <thead>
-                        <tr>
-                            <th class="special3">d</th>
-                            <th>Dental procedures</th>
-                            <th class="special1">Code</th>
-                            <th class="special2">Number</th>
-                            <th class="special3"></th>
-                            <th></th>
-                            <th class="special1"> Code</th>
-                            <th class="special2">Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="special3">1</td>
-                            <td>Examination and Diagnosis, Clinical Oral </td>
-                            <td class="special1">1000</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='D8sMp0HZBkp'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special3">7</td>
-                            <td>Root planing, periodontal</td>
-                            <td class="special1">43400</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F5inj44DHc4'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special3">2</td>
-                            <td>Radiographs</td>
-                            <td class="special1">2100</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Ey4m4gOp53d'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special3">8</td>
-                            <td>Denture Complete </td>
-                            <td class="special1">51000</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='yUPuXJzcwJ3'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special3">3</td>
-                            <td>Polishing/Cleaning</td>
-                            <td class="special1">11100 </td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='iErbfjKVES0'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special3">9</td>
-                            <td>Dentures, Repairs/Additions </td>
-                            <td class="special1">55000</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='FWMRuawXIPQ'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special3">4</td>
-                            <td>Caries/Trauma/Pain Control</td>
-                            <td class="special1">20100</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='vvvvhqwlNIS'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special3">10</td>
-                            <td>Therapeutic Tissue Conditioning</td>
-                            <td class="special1">56500</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='MSiDnXexndm'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special3">5</td>
-                            <td>Restorations </td>
-                            <td class="special1">23000</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='t7MZ8o2uKAh'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special3">11</td>
-                            <td>Removals, (extractions), Erupted Teeth </td>
-                            <td class="special1">71000</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='v9yHUJpG0io'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special3">6</td>
-                            <td>Periodontal Services, Surgical </td>
-                            <td class="special1">42000</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='CyiBOQOFlEK'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special3">12</td>
-                            <td>Removals, (extractions), residual roots</td>
-                            <td class="special1">72300</td>
-                            <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='jkozSHLaPxz'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-*/} 
-{/*            <div className='malaria_section'>
-                <table className="malaria">
-                    <thead>
-                        <tr>
-                            <th colSpan="8" class="specialth">III. Malaria</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th rowSpan='2' class="special"></th>
-                            <th rowSpan='2'></th>
-                            <th colSpan='2' style={{ width: '100px', textAlign: 'center' }}>OPD</th>
-                            <th colSpan='2' style={{ width: '100px', textAlign: 'center' }}>Hospitalisation</th>
-                            <th colSpan='2' style={{ width: '100px', textAlign: 'center' }}>Deaths</th>
-                        </tr>
-                        <tr>
-                            <td class="special4">Under 5 yrs </td>
-                            <td class="special4">&gt;=5Yrs </td>
-                            <td class="special4">Under 5 yrs</td>
-                            <td class="special4">&gt;=5Yrs</td>
-                            <td class="special4">Under 5 yrs</td>
-                            <td class="special4">&gt;=5Yrs</td>
-                        </tr>
-
-                        <tr>
-                            <th class="special">a</th>
-                            <th>Simple Malaria/<i>Paludisme simple</i> </th>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='ogDumYYLz71'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='ogDumYYLz71'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='SGuL8Pd4DI5'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='SGuL8Pd4DI5'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">1</td>
-                            <td>All fever cases received//<i>tous les cas de fièvre reçus</i> </td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='ogDumYYLz71'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='ogDumYYLz71'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='SGuL8Pd4DI5'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='SGuL8Pd4DI5'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">2</td>
-                            <td>Simple Malaria not in Pregnancy (exclude <i>post-partum</i>) /<i>Paludisme simple hormis les femmes enceintes et apres l'accouchement</i> </td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='M4680LwNAFk'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='M4680LwNAFk'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pXop68jSgSb'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pXop68jSgSb'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">3</td>
-                            <td>Simple Malaria in Pregnancy/<i>Paludisme simple sur la grossesse</i> </td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='B0Y2yqocxjd'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pAfDGBTnA5u'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">4</td>
-                            <td>Simple Malaria in <i>post-partum (42 days after delivery</i>)/<i>Paludisme simple Durant la periode du postpartum dans les 42 jours après accouchement</i> </td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='MmDnglPDD6u'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='f7BqqP06anj'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">5</td>
-                            <td>Simple Malaria with Minor Digestive Symptoms (not in Pregnancy)/<i>Paludisme simple avec troubles digestifs mineurs (exclure paludisme sur la grossesse)</i> </td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='vxpTiHitKhW'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='vxpTiHitKhW'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='oL58aW94Awj'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='oL58aW94Awj'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">6</td>
-                            <td>Simple Malaria with Minor Digestive Symptoms in Pregnancy/<i>Paludisme simple avec troubles digestifs mineurs sur la grossesse</i> </td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='kobchtZma1a'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='O6nSYPeRtae'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">7</td>
-                            <td>Simple Malaria with Minor Digestive Symptoms in <i>post-partum (within 42 days after delivery</i>)/<i>Paludisme simple avec troubles digestifs mineurs en postpartum (dans les 42 jours après accouchement)</i> </td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='ERtHOXfMaoA'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='b7Bq12DBiFW'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <th class="special">b</th>
-                            <th><i>SEVERE MALARIA</i>/<i>Paludisme severe</i> </th>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">1</td>
-                            <td>Severe Malaria not in Pregnancy/<i>Paludisme severe exclu chez la femme enceinte</i> </td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XQT0lfAmgM6'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='XQT0lfAmgM6'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='QL9feCxDtot'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='QL9feCxDtot'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OkPlignSxHU'&&dataValue.categoryOptionCombo=='ogpshxtAJcX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='OkPlignSxHU'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">2</td>
-                            <td>Severe Malaria in Pregnancy/<i>Paludisme severe chez la femme enceinte</i> </td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='YBa2tyVEwRY'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Gd0iqqvtPOX'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='wPk9Uq36HwX'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">3</td>
-                            <td>Severe Malaria in postpartum (within 42 days after delivery)/<i>Paludisme severe en postpartum (dans les 42 jours après accouchement)</i> </td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Zcp7lFR4OpX'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Zg3L7huIS71'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xQczpXDC6Jf'&&dataValue.categoryOptionCombo=='e6Ucbjb8jMX'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <th class="special">c</th>
-                            <th><i>TREATMENT</i> </th>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">4</td>
-                            <td>Number of persons who received first line treatment with ACTs(Total)</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='pcLpztYjX6I'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">5</td>
-                            <td>Number of persons who received first line treatment with Quinine(Total) </td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fHdM7WT0Qr3'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                        <tr>
-                            <td class="special">6</td>
-                            <td>Number of persons treated with Artesunate (Total)</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='lrDuNs9t3tr'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                            <td class="special4"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table className='malariaCases'>
-                    <thead>
-                        <th rowSpan="2" class="special">d</th>
-                        <th rowSpan="2">Malaria cases Summary</th>
-                        <th colSpan="2" style={{ width: "100px", alignItems: 'center' }}>Under 5 yrs</th>
-                        <th colSpan="2" style={{ width: "100px", alignItems: 'center' }}> &gt;=5 yrs</th>
-                        <tr>
-                            <th class="special4">Male</th>
-                            <th class="special4">Female</th>
-                            <th class="special4">Male</th>
-                            <th class="special4">Female</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td class="special">1</td>
-                            <td>Malaria cases received in OPD</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Y57dJIWqCHM'&&dataValue.categoryOptionCombo=='NqoTHB1f8yK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Y57dJIWqCHM'&&dataValue.categoryOptionCombo=='tX7Lg7kQVnK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Y57dJIWqCHM'&&dataValue.categoryOptionCombo=='HZlmid8uK4X'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='Y57dJIWqCHM'&&dataValue.categoryOptionCombo=='W3HRFymmS2Q'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">2</td>
-                            <td>Inpatients Malaria cases</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='AIRywAVxcWm'&&dataValue.categoryOptionCombo=='NqoTHB1f8yK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='AIRywAVxcWm'&&dataValue.categoryOptionCombo=='tX7Lg7kQVnK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='AIRywAVxcWm'&&dataValue.categoryOptionCombo=='HZlmid8uK4X'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='AIRywAVxcWm'&&dataValue.categoryOptionCombo=='W3HRFymmS2Q'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">3</td>
-                            <td>Severe Malaria cases</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fTuK6oJh5eJ'&&dataValue.categoryOptionCombo=='NqoTHB1f8yK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fTuK6oJh5eJ'&&dataValue.categoryOptionCombo=='tX7Lg7kQVnK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fTuK6oJh5eJ'&&dataValue.categoryOptionCombo=='HZlmid8uK4X'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='fTuK6oJh5eJ'&&dataValue.categoryOptionCombo=='W3HRFymmS2Q'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                        <tr>
-                            <td class="special">4</td>
-                            <td>Malaria deaths</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xT9vV6PLWMU'&&dataValue.categoryOptionCombo=='NqoTHB1f8yK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xT9vV6PLWMU'&&dataValue.categoryOptionCombo=='tX7Lg7kQVnK'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xT9vV6PLWMU'&&dataValue.categoryOptionCombo=='HZlmid8uK4X'?dataValue.value:''}</span>))}</td>
-                            <td class="special4">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='xT9vV6PLWMU'&&dataValue.categoryOptionCombo=='W3HRFymmS2Q'?dataValue.value:''}</span>))}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>*/}
-
-{/*            <div className='mental_health_section'>
+           <div className='mental_health_section'>
                 <table className='mentalHealth'>
                     <thead>
                         <tr>
@@ -1392,9 +364,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className='chronic_section'>
+            <div className='chronic_section'>
                 <table className='chronic'>
                     <thead>
                         <tr>
@@ -1702,9 +674,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className='palliative_care_section'>
+            <div className='palliative_care_section'>
                 <table className='palliativeCare'>
                     <thead>
                         <tr>
@@ -1732,9 +704,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>   */}
+            </div>
             
-{/*            <div className='cancer_screening_section'>
+           <div className='cancer_screening_section'>
                 <table className='cancerScreening'>
                     <thead>
                         <th colSpan="3" class="specialth">VII. Cancer screening</th>
@@ -1757,9 +729,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>  */}
+            </div> 
             
-{/*            <div className='hospitalization_section'>
+            <div className='hospitalization_section'>
                 <table className='hospitalizations'>
                     <thead>
                         <tr>
@@ -2335,9 +1307,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className='gender_based-violence'>
+            <div className='gender_based-violence'>
                 <table className='Atable'>
                     <thead>
                         <th colSpan="14" style={{ backgroundColor: "black" }}>A</th>
@@ -2718,9 +1690,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-        </div>*/}
+            </div>
 
-{/*            <div className='surgery_section'>
+            <div className='surgery_section'>
                 <table className='sugery'>
                     <thead>
                         <tr>
@@ -2982,9 +1954,9 @@ const Form = ({visible }) =>{
 
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className="anesthesia_section">
+            <div className="anesthesia_section">
                 <table className='anesthesia'>
                     <thead>
                         <tr>
@@ -3014,9 +1986,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className='rehabilitation_section'>
+            <div className='rehabilitation_section'>
                 <table className='rehabilitation '>
                     <thead>
                         <tr>
@@ -3090,11 +2062,11 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div> 
 
             {/*division with some confusing data elements*/}
 
-{/*            <div className='obstetrical_section'>
+         <div className='obstetrical_section'>
                 <table className='obstetrical'>
                     <thead>
                         <tr>
@@ -3475,9 +2447,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>  */}
+            </div>
             
-{/*            <div className="postnatal_section">
+            <div className="postnatal_section">
                 <table className='postnatalCare'>
                     <thead>
                         <tr class="specialth">
@@ -3525,9 +2497,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className="kangaroo_section">
+           <div className="kangaroo_section">
                 <table className='kangaroo'>
                     <thead>
                         <tr>
@@ -3547,9 +2519,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className="neonatal_section">
+            <div className="neonatal_section">
                 <table className='neonatal'>
                     <thead>
                         <tr>
@@ -3683,9 +2655,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className="nitrition_section">
+            <div className="nitrition_section">
                 <table className='nutritionScreening'>
                     <thead>
                         <tr>
@@ -4026,9 +2998,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className="labo_section">
+            <div className="labo_section">
                 <table className='laboratory'>
                     <thead>
                         <tr>
@@ -4363,7 +3335,7 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-                </div>*/}
+                </div>
 
                 <div className="tracerDrug_section">
                                 <table className='tracerDrug'>
@@ -4620,7 +3592,7 @@ const Form = ({visible }) =>{
                     </table>
                 </div>
 
-{/*            <div className="medical_imagery_section">
+            <div className="medical_imagery_section">
                 <table className='medicalImagery'>
                     <thead>
                         <tr>
@@ -4666,9 +3638,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className="ambulance_section">
+            <div className="ambulance_section">
                 <table className='ambulance'>
                     <thead>
                         <tr>
@@ -4782,9 +3754,9 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-            </div>*/}
+            </div>
 
-{/*            <div className="staffing_section">
+            <div className="staffing_section">
                 <table className='staffing'>
                     <thead>
                         <tr>
@@ -5095,7 +4067,7 @@ const Form = ({visible }) =>{
                         </tr>
                     </tbody>
                 </table>
-               </div>*/}
+               </div> 
 
 
             <button className='input' onClick={onclose}>Cancel</button>
