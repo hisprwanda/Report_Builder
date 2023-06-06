@@ -64,9 +64,6 @@ const Home = () => {
     setChosenFormat(null);
     setHide(true);
   };
- 
-
-
 
   const handleImageClick = (period) => {
 
