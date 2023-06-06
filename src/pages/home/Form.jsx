@@ -28,7 +28,6 @@ import Staffing from '../../components/report_sections/Staffing';
 import Buttons from '../../components/report_sections/Buttons';
 
 
-
 // TODO: replace this with the correct querry
 const reportQuery = {
     me: {
@@ -46,7 +45,6 @@ const reportQuery = {
         },
     },
   }
-
 
   
 const Form = ({visible }) =>{
@@ -88,35 +86,40 @@ const Form = ({visible }) =>{
         <div>
             <div className='monthly_report_form' id="monthly_report_form">
 
-                <div className='header_section'>
-                    <header className='section'>
-                        <img src={Logo}></img>
-                        <p>
-                        <h1>District Hospital Monthly HMIS Report</h1>
-                        <h2><i>Rapport Mensuel SIS de l’Hôpital de district</i></h2>
-                        </p>
-                    </header>
-                </div>
-                
-{/*                <div className='identification_section'>
-                    <table align="center">
-                        <thead>
-                            <tr>
-                                <th colSpan="4" class="specialth">
-                                    I.Identification / Identification
-                                </th>
-                            </tr>
-                            <tr>
-                                <th colSpan="4">
-                                    A)Report identification/ <i>identification</i>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <><tr>
-                                <td style={{ maxWidth: "100px" }}>1.Facility Name / <i> Nom de la formation sanitaire</i></td>
-                                <td class="special1">{data.me.name}</td>
-                                <td>3.Year/<i>Annee</i></td>
+            <div className='header_section'>
+                <header className='section'>
+                    <img src={Logo}></img>
+                    <p>
+                    <h1>District Hospital Monthly HMIS Report</h1>
+                    <h2><i>Rapport Mensuel SIS de l’Hôpital de district</i></h2>
+                    </p>
+                </header>
+            </div>
+            
+            <div className='identification_section'>
+                <table align="center">
+                    <thead>
+                        <tr>
+                            <th colSpan="4" class="specialth">
+                                I.Identification / Identification
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colSpan="4">
+                                A)Report identification/ <i>identification</i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <><tr>
+                            <td style={{ maxWidth: "100px" }}>1.Facility Name / <i> Nom de la formation sanitaire</i></td>
+                            <td class="special1">{data.me.name}</td>
+                            <td>3.Year/<i>Annee</i></td>
+                            <td class="special5"></td>
+                        </tr><tr>
+                                <td style={{ maxWidth: "140px" }}>2. Catchment Area Population / <i>Population totale de la zone de rayonnement</i></td>
+                                <td class="special1"></td>
+                                <td>4.Month/<i>Mois</i></td>
                                 <td class="special5"></td>
                             </tr><tr>
                                     <td style={{ maxWidth: "140px" }}>2. Catchment Area Population / <i>Population totale de la zone de rayonnement</i></td>
@@ -125,8 +128,8 @@ const Form = ({visible }) =>{
                                     <td class="special5"></td>
                                 </tr></>
                         </tbody>
-                    </table>
-                    <table align="center" className='reportApprovals'>
+                 </table>
+                 <table align="center" className='reportApprovals'>
                         <thead>
                             <tr>
                                 <th colSpan={4}>
@@ -151,8 +154,10 @@ const Form = ({visible }) =>{
                                 </tr>
                             </>
                         </tbody>
-                    </table>
-                </div>*/}
+                </table>
+            </div>
+
+
 
                 <OutPatient data={data} />
 {/*                <Malaria data={data} />

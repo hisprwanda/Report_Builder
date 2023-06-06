@@ -734,6 +734,7 @@ const OutPatient = ({data}) => {
                     <td class="special1">1000</td>
                     <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='D8sMp0HZBkp'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
                     <td class="special3"></td>
+                    <td class="special3">7</td>
                     <td>Root planing, periodontal</td>
                     <td class="special1">43400</td>
                     <td class="special2">{data.dataValueSets.dataValues.map((dataValue)=>(<span>{dataValue.dataElement=='F5inj44DHc4'&&dataValue.categoryOptionCombo=='BNTdWBe0N1F'?dataValue.value:''}</span>))}</td>
