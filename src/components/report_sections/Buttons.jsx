@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 import html2pdf from "html2pdf.js";
-import { useState } from "react"
+import { useState } from "react";
 
 const Buttons = () => {
-    const [isTableOpen, setIsTableOpen] = useState(false)
-    const handleCancel = () => {
-      setIsTableOpen(false)
-    }
+  const [isTableOpen, setIsTableOpen] = useState(false);
+  const handleCancel = () => {
+    setIsTableOpen(false);
+  };
 
-    const handleSave = () => {
+  const handleSave = () => {
     let element = document.getElementById("monthly_report_form");
     let clonedElement = element.cloneNode(true);
 
@@ -22,13 +22,17 @@ const Buttons = () => {
 
     html2pdf().from(clonedElement).set(opt).save();
   };
-  
+
   return (
     <div>
-    <button className='input' onClick={handleCancel}>Cancel</button>
-    <button className='primary' onClick={handleSave}>Download</button>
+      <button className="input" onClick={handleCancel}>
+        Cancel
+      </button>
+      <button className="primary" onClick={handleSave}>
+        Download
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Buttons
+export default Buttons;
