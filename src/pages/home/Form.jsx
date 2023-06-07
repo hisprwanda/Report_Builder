@@ -38,7 +38,7 @@ const reportQuery = {
   dataValueSets: {
     resource: "dataValueSets",
     params: {
-      dataSet: "XesKc0UNEKj",
+      dataSet: "aPPHD1VGcpr",
       period: "202304",
       orgUnit: "cTBc6Cl0jM8",
     },
@@ -102,7 +102,6 @@ const Form = ({ visible }) => {
             </p>
           </header>
         </div>
-
         <div className="identification_section">
           <table align="center">
             <thead>

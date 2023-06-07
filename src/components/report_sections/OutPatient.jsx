@@ -3597,7 +3597,6 @@ const OutPatient = ({ data }) => {
                 </span>
               ))}
             </td>
-            <td class="special3"></td>
             <td class="special3">7</td>
             <td>Root planing, periodontal</td>
             <td class="special1">43400</td>

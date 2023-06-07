@@ -1,14 +1,19 @@
 import React from "react";
+import { Modal, ModalTitle, ModalContent, ModalActions } from "@dhis2-ui/modal";
 import html2pdf from "html2pdf.js";
 import { useState } from "react";
 
 const Buttons = () => {
-  const [isTableOpen, setIsTableOpen] = useState(false);
-  const handleCancel = () => {
-    setIsTableOpen(false);
+  const [chosenFormat, setChosenFormat] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [onChoosingFormats, setOnChoosingFormats] = useState(true);
+  
+  const handleModalCancel = () => {
+    setChosenFormat(null);
+    setHide(false);
   };
 
-  const handleSave = () => {
+    const handleSave = () => {
     let element = document.getElementById("monthly_report_form");
     let clonedElement = element.cloneNode(true);
 
@@ -25,7 +30,7 @@ const Buttons = () => {
 
   return (
     <div>
-      <button className="input" onClick={handleCancel}>
+      <button className="input" onClick={handleModalCancel}>
         Cancel
       </button>
       <button className="primary" onClick={handleSave}>

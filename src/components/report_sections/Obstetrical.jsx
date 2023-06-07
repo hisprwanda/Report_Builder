@@ -38,17 +38,17 @@ const Obstetrical = ({ data }) => {
             <td class="special">1</td>
             <td>Total number of abortions</td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "G8sttgBrQmj" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "FZwuxohc9V4" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "dzfT8CgOTQZ" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">2</td>
             <td>Spontaneous abortions</td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "NFlA1rbzmTK" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "zn2ZgVUeDJN" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "KjL4iPButKD" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">3</td>
@@ -56,9 +56,9 @@ const Obstetrical = ({ data }) => {
               Complications of abortions/ <i>Avortements compliqués</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "o5aBgC7M9y5" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "NhKQDbpwc8b" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "sLeVWcSv77l" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">4</td>
@@ -66,9 +66,9 @@ const Obstetrical = ({ data }) => {
               Ectopic pregnancy/ <i>Grosesse ectopiques (Extra uterines)</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "dD6OG9afFjJ" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "igtlyEFtsR9" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "gcjVsSMU07i" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">5</td>
@@ -76,9 +76,9 @@ const Obstetrical = ({ data }) => {
               Antepartum Hemorrhage (APH)/ <i>Hémorragie prénatale</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "dfynxoug4JC" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "ahzxHzp9oTh" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "BzXn6TWlNjv" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">6</td>
@@ -86,9 +86,9 @@ const Obstetrical = ({ data }) => {
               Post-partum hemorrhage (PPH) /<i> Hémorragie Post-partum</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "VxaENqFAuyD" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "CwDatgWUNJr" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "OpeDTCfBrTu" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">7</td>
@@ -96,9 +96,9 @@ const Obstetrical = ({ data }) => {
               Eclampsia /<i>Eclampsie</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "uv1AD9tqk0C" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "jUhNMc3lDu9" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "W09Bqri4Lvl" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">8</td>
@@ -106,9 +106,9 @@ const Obstetrical = ({ data }) => {
               Severe Pre-Eclampsia/ Eclampsie / <i>Pre Eclampsie Sévère</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "my1u8tP5Ore" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "fP1fqhWBFhY" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "FY53iCVPtxP" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">9</td>
@@ -116,9 +116,9 @@ const Obstetrical = ({ data }) => {
               Post C/Section infection /<i>Infections post cesarienne</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "jZvFSCyGTFV" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "h5cXjPjV4KI" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "dq3c4UZYyEG" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">10</td>
@@ -129,9 +129,9 @@ const Obstetrical = ({ data }) => {
               </i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "Aj4Uh28oDnx" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "xtZef29LvhT" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "aqoZNXRh3u1" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">11</td>
@@ -140,9 +140,9 @@ const Obstetrical = ({ data }) => {
               <i>Travail prolongé (ou dystocie mécanique)</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "N7S5UkyNkkX" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "MeGOgk5IQym" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "pAvzbDlWb6C" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">12</td>
@@ -150,9 +150,9 @@ const Obstetrical = ({ data }) => {
               Uterine rupture/<i>Rupture uterine</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "TcCrxbTJswU" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "xT9ktntXyHj" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "tTYaEaWc98i" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">13</td>
@@ -161,8 +161,8 @@ const Obstetrical = ({ data }) => {
             </td>
             <td class="special5"></td>
             <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "D6QZdNHCvBK" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "LofV8CY91p8" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">14</td>
@@ -171,8 +171,8 @@ const Obstetrical = ({ data }) => {
             </td>
             <td class="special5"></td>
             <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "JtzrGZlmNew" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "F6V6P8jr8W1" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">15</td>
@@ -181,9 +181,9 @@ const Obstetrical = ({ data }) => {
               <i>Autres complications obstetricales directes</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "fOf536jAhyP" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "khTtflzJxcc" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "p2Ln9D5JArn" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">16</td>
@@ -191,9 +191,9 @@ const Obstetrical = ({ data }) => {
               Anemia Severe (&lt;7gm/dl)/ <i>Anémie Sévère (&lt;7gm/dl)</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "IKBafy5jHOz" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "BOvEH3pzgqL" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "DSW473n6arF" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">17</td>
@@ -201,9 +201,9 @@ const Obstetrical = ({ data }) => {
               HIV/Opportunistic Infections/<i>VIH infections opportunists</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "esf6rmsuWz6" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "WnTFjrMPMpq" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "pInalQxxInh" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">18</td>
@@ -211,9 +211,9 @@ const Obstetrical = ({ data }) => {
               Pulmonary embolism/ <i>Embolie pulmonaire</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "FpcZiFReiM1" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "eo3zZVoICjg" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "aKwv7St1ZGt" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">19</td>
@@ -221,9 +221,9 @@ const Obstetrical = ({ data }) => {
               Pneumonia on pregnancy/ <i>Pneumonie sur grossesse</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "OHzbgrWx3HS" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "oBh5E8awDa6" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "Fk0CP2LRsoa" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">20</td>
@@ -232,9 +232,9 @@ const Obstetrical = ({ data }) => {
               <i>Autres complications obstetricales indirectes</i>
             </td>
             <td class="special5"></td>
-            <td class="special7"></td>
-            <td class="special7"></td>
-            <td class="special5"></td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "pfyMeeI7D4E" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special7">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "HLhmVJp2HnN" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "Q0Y2mTMyznN" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
         </tbody>
       </table>
@@ -265,7 +265,7 @@ const Obstetrical = ({ data }) => {
                 pour traiter les infections puerpérales
               </i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "yiqBXJJuu1J" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">2</td>
@@ -276,14 +276,14 @@ const Obstetrical = ({ data }) => {
                 post partum
               </i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "uabBcrbOMi3" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">3</td>
             <td>
               Manual removal of placenta/ <i>Delivrance manuelle du placenta</i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "DnekMOdY0YJ" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">4</td>
@@ -291,7 +291,7 @@ const Obstetrical = ({ data }) => {
               Post-Abortion Care (Manual vacuum aspiration)/{" "}
               <i>Soins Post-Avortement (Aspiration Manuelle ou curettage)</i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "SOdb3pVVYl1" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">5</td>
@@ -299,7 +299,7 @@ const Obstetrical = ({ data }) => {
               Delivery by Vacuum extraction/{" "}
               <i>Accouchement par ventouse obstetricale</i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "XYHy7efMtNg" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">6</td>
@@ -309,7 +309,7 @@ const Obstetrical = ({ data }) => {
                 Cas de (pré) éclampsie qui ont reçus le sulfate de magnésium
               </i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "LTe1RxQAZJf" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">7</td>
@@ -317,7 +317,7 @@ const Obstetrical = ({ data }) => {
               Blood transfusion for obstetrical complications /
               <i>Transfusion sanguine pour complication obstétricales</i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "q9qJIX1fELT" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">8</td>
@@ -329,7 +329,7 @@ const Obstetrical = ({ data }) => {
                 supérieur
               </i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "fICuyReInRd" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
         </tbody>
       </table>
@@ -350,14 +350,14 @@ const Obstetrical = ({ data }) => {
             <td>
               Deliveries total at health facility/<i>Accouchements, total</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "TWmX6JS19hO" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">2</td>
             <td>
               Deliveries by Caesarean Section/<i>Césarienne</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "YjFoB5z7hPM" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">3</td>
@@ -365,7 +365,7 @@ const Obstetrical = ({ data }) => {
               Delivery complicated by perineal tear (second-,third,-fourth
               degree)/<i>Accouchement compliqués par déchirure périnéale</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "yuVx24YWaQC" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">4</td>
@@ -373,7 +373,7 @@ const Obstetrical = ({ data }) => {
               Birth trauma to newborn/
               <i>Traumatismes du nouveau- né à la naissance</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "mT8zF8qImG1" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">5</td>
@@ -381,7 +381,7 @@ const Obstetrical = ({ data }) => {
               Cleft palate or Cleft lip/
               <i>Bec de lievre ou Fente Labio-palatine</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "zzu1At9VFrE" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">6</td>
@@ -389,7 +389,7 @@ const Obstetrical = ({ data }) => {
               Other congenital malformation/
               <i>Autre malformation congénitale</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "RZlLsJsdUdY" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">7</td>
@@ -414,7 +414,7 @@ const Obstetrical = ({ data }) => {
             <td>
               Deliveries 18 – 19 years/<i>Accouchement, femmes de 18-19 ans</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "sCC684QS0cr" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">10</td>
@@ -422,7 +422,7 @@ const Obstetrical = ({ data }) => {
               Multiple Pregnancies (women who delivered twins, triplets, etc.)/
               <i>Grossesses multiples (Jumeaux, triplets, etc.)</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "EcgQ17EawEC" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">11</td>
@@ -434,7 +434,7 @@ const Obstetrical = ({ data }) => {
                 entre24-34 semaines
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "q7MMSCrzFhb" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">12</td>
@@ -446,7 +446,7 @@ const Obstetrical = ({ data }) => {
                 entre24-34 qui ont recu les corticosteroides
               </i>
             </td>
-            <td class="special5"></td>
+            <td class="special5">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "tHcXRIwSGxY" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">13</td>
@@ -457,7 +457,7 @@ const Obstetrical = ({ data }) => {
                 sur grossesse non a terme
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "bWuzcOXesgP" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">14</td>
@@ -469,7 +469,7 @@ const Obstetrical = ({ data }) => {
                 sur grossesse non a terme qui ont recu les antibiotiques
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "KoaO4mxdAgz" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">15</td>
@@ -481,7 +481,7 @@ const Obstetrical = ({ data }) => {
                 en charge active du troisieme stade du travail
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "YnfI5goUnPy" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">16</td>
@@ -493,14 +493,14 @@ const Obstetrical = ({ data }) => {
                 après accouchement
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "VfzC8s6TUrs" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">17</td>
             <td>
               Births, live /<i>Naissances vivantes</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "wRUJGPh9tuz" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">18</td>
@@ -508,7 +508,7 @@ const Obstetrical = ({ data }) => {
               Birth weight &lt;2500 gr (alive) /
               <i>Poids à la naissance &lt;2500 grvivantes</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "krWvxbmJ8RK" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">19</td>
@@ -516,7 +516,7 @@ const Obstetrical = ({ data }) => {
               Premature newborns (alive) 22-37 weeks /
               <i>Nouveaux né vivants qui sont prématurés</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "j2prahOx4Hb" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">20</td>
@@ -526,7 +526,7 @@ const Obstetrical = ({ data }) => {
                 Poids à la naissance ≤2000 gr (Tous les nouveaux nés vivants)
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "PieFWU8m9A6" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">21</td>
@@ -534,7 +534,7 @@ const Obstetrical = ({ data }) => {
               Still births fresh (≥28 weeks or ≥1000grams) all/{" "}
               <i>Morts nés frais (≥ 28 semaines ou ≥ 1000 Grams)</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "FTWMq0h5Xts" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">22</td>
@@ -542,7 +542,7 @@ const Obstetrical = ({ data }) => {
               Still births macerated (≥28 weeks or≥1000 grams) /
               <i>Morts nés macérés ( ≥28 Semaines ou ≥1000 Grams )</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "gMxziX5AXhD" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">23</td>
@@ -550,7 +550,7 @@ const Obstetrical = ({ data }) => {
               Still births fresh (≥2500 grams) /
               <i>Morts nés frais (≥2500 gr)</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "TzwBpxiT20L" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">24</td>
@@ -561,7 +561,7 @@ const Obstetrical = ({ data }) => {
                 minutes de la naissance)
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "ya7qr3mLlW0" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">25</td>
@@ -572,7 +572,7 @@ const Obstetrical = ({ data }) => {
                 Nouveaux-nés allaité endéans la première heure après naissance
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "Ggt7SxZTo7u" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">26</td>
@@ -580,7 +580,7 @@ const Obstetrical = ({ data }) => {
               Live Newborns who didn’t cry/breath at birth/ Nouveau- nés vivants
               qui n’ont pas crié (pleuré)/<i>respiré a la naissance</i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "roGWjYfjXli" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
           <tr>
             <td class="special">27</td>
@@ -594,7 +594,7 @@ const Obstetrical = ({ data }) => {
                 &lt; 5 a la 5 min
               </i>
             </td>
-            <td class="special2"></td>
+            <td class="special2">{data.dataValueSets.dataValues.map((dataValue) => (<span>{dataValue.dataElement == "t3GLvTvbekD" && dataValue.categoryOptionCombo == "BNTdWBe0N1F" ? dataValue.value: ""}</span>))}</td>
           </tr>
         </tbody>
       </table>
