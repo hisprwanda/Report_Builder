@@ -16,7 +16,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import GenerateReportModal from "../../components/modal/GenerateReportModal";
-import { Modal, ModalTitle, ModalContent, ModalActions } from "@dhis2-ui/modal";
+import { Modal, ModalTitle, ModalContent, ModalActions, ButtonStrip } from "@dhis2/ui";
 import { useConfig, useDataQuery, useAlert } from "@dhis2/app-runtime";
 import { useNavigate } from "react-router-dom";
 
@@ -112,7 +112,6 @@ const Home = () => {
           <span className="link"> Create New Report</span>
         </Link>
       </div>
-
       <div>
         <Modal className="generate_report_modal" hide={hide} large>
           {/* <ModalTitle>My Modal</ModalTitle> */}
@@ -123,7 +122,6 @@ const Home = () => {
                   <div className="title">
                     <span>Generate New Report </span>
                   </div>
-
                   {chosenFormat ? (
                     <div>
                       <p>What time format do you need?</p>
@@ -141,7 +139,6 @@ const Home = () => {
                     </div>
                   )}
                 </div>
-
                 <div className="formats">
                   <div
                     className="format_placeholder chosen_format"

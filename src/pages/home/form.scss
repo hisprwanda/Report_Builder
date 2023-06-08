@@ -8,11 +8,12 @@
     }
    
    h1{
-     font-size: 2rem;
+     font-size: 1.8rem;
      letter-spacing: 0.9px;
      font-style: calibian;
      text-align: center;
      background-color: rgb(248, 250, 252);
+     width: 100%;
    
    }
    h2{
@@ -67,14 +68,13 @@
    .section{
      display: flex;
      justify-content: space-evenly;
-     width: 80%;
+     width: 70%;
      background-color: rgb(248, 250, 252);
    }
    .section img{
-     height: 172px;
-     width: 202px;
+     height: 120px;
+     width: 120px;
      float: left;
-     margin-left: 6rem;
      background-color: rgb(248, 250, 252);
    }
    .speci{
@@ -196,7 +196,6 @@
    .section p{
      float: center;
      align-items: center;
-     margin-left: 10rem;
    }
    i{
      background-color: rgb(248, 250, 252);

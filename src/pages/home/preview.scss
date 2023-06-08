@@ -17,20 +17,28 @@
     transform: translate(-50%, -50%);
     z-index: 2;
     overflow: auto;
-    height: 80%; 
-
-    button {
-        background-color: #354236;
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px;
-        cursor: pointer;
-        align-self: center;
-        margin-left: 20px;
-      }
-     
+    height: 80%;
+        .fixed-buttons {
+          position: sticky;
+          bottom: 20px; /* Adjust the desired distance from the bottom */
+          left: 50%; /* Center the buttons horizontally */
+          transform: translateX(-50%); /* Adjust to center the buttons exactly */
+          margin-left: 500px;
+          z-index: 999;
+          display: flex;
+          justify-content: center;
+            button {
+                background-color: #354236;
+                border: none;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                font-size: 16px;
+                margin: 10px;
+                cursor: pointer;
+                align-self: center;
+                margin-left: 20px;
+              }
+        }
 }

@@ -6,7 +6,7 @@ const GenderBasedViolence = ({ data }) => {
       <table className="Atable">
         <thead>
           <th colSpan="14" style={{ backgroundColor: "black" }}>
-            A
+            I. Gender Based Violence
           </th>
           <tr>
             <th rowSpan="2" class="special">

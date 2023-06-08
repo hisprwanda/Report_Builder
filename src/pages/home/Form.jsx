@@ -139,17 +139,6 @@ const Form = ({ visible }) => {
                   </td>
                   <td class="special5"></td>
                 </tr>
-                <tr>
-                  <td style={{ maxWidth: "140px" }}>
-                    2. Catchment Area Population /{" "}
-                    <i>Population totale de la zone de rayonnement</i>
-                  </td>
-                  <td class="special1"></td>
-                  <td>
-                    4.Month/<i>Mois</i>
-                  </td>
-                  <td class="special5"></td>
-                </tr>
               </>
             </tbody>
           </table>
@@ -190,7 +179,7 @@ const Form = ({ visible }) => {
         </div>
         <OutPatient data={data} />
         <Malaria data={data} />
-        <MentalHealth data={data} />
+        {/*<MentalHealth data={data} />
         <Chronic data={data} />
         <PalliativeCare data={data} />
         <CancerScreening data={data} />
@@ -208,7 +197,12 @@ const Form = ({ visible }) => {
         <TracerDrug data={data} />
         <MedicalImagery data={data} />
         <Ambulance data={data} />
-        <Staffing data={data} />
+        <Staffing data={data} />*/}
+{/*        <div className="footer_section">
+          <header className="section">
+            <p>=========================================================================================</p>
+          </header>
+        </div>*/}
       </div>
       <Buttons />
     </div>
