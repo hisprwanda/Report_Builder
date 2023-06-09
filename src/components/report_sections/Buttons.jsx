@@ -19,7 +19,7 @@ const Buttons = () => {
     let clonedElement = element.cloneNode(true);
 
     let opt = {
-      margin: 2, // Top, right, bottom, left margins
+      margin: [2,2,2,2], 
       filename: "monthly_report.pdf",
       image: { type: "jpeg", quality: 0.8 },
       html2canvas: { scale: 2 },
