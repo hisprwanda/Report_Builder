@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./home.scss";
 import  FormPreviewModal  from "./FormPreviewModal";
 import { useState } from "react";
-import GenerateReportModal from "../../components/modal/GenerateReportModal";
+import GenerateReportModal from "../../components/modals/GenerateReportModal";
 import { useConfig } from "@dhis2/app-runtime";
 
 
@@ -21,22 +21,13 @@ const Home = () => {
     );
   };
 
-  const onClose = () => {
-    setIsHiden(true)
+  const onClose = () => setIsHiden(true);
+  const onClosePreview = () =>  setIsHiddenPreview(true);
+
+  const onGenerateReport = () => {
+    console.log('Generating report...');
+    setIsHiddenPreview(false)
   }
-
-  const onClosePreview = () => {
-    setIsHiddenPreview(true)
-  }
-
-  const handlePeriodSelection = (period) => {
-    if (period.periodTitle === "Monthly") {
-      setIsHiden(true)
-      setIsHiddenPreview(false)
-    }
-  }
-
-
 
   return (
     <div className="home">
@@ -81,11 +72,16 @@ const Home = () => {
 
 
         {/* A modal to generate reports */}
-        <GenerateReportModal hide={isHiden} handlePeriodSelection={handlePeriodSelection} onClose={onClose}/>
+        <GenerateReportModal 
+          hide={isHiden} 
+          onClose={onClose}
+          onGenerateReport={onGenerateReport}
+        />
         {/* modal to preview the report and download */}
-        <FormPreviewModal isHiddenPreview={isHiddenPreview} onClosePreview={onClosePreview}/>
-
-
+        <FormPreviewModal 
+          isHiddenPreview={isHiddenPreview} 
+          onClosePreview={onClosePreview}
+        />
     </div>
   );
 };

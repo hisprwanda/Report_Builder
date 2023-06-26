@@ -111,7 +111,7 @@ const handleReportDownload = () => {
 
   return (
     <Modal className="report_form_modal" hide={isHiddenPreview} onClose={onClosePreview} position="middle" large>  
-      {/* <ModalTitle >Preview the monthly report below and download it by clicking the "Download" Button below.</ModalTitle> */}
+      {/* <ModalTitle>District Hospital Monthly HMIS Report</ModalTitle> */}
       <ModalContent >
         <div className="monthly_report_form" id="monthly_report_form">
           <div className="header_section">
