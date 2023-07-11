@@ -18,21 +18,20 @@ import quarterly from "../../assets/images/periods/quarterly.png";
 import monthly from "../../assets/images/periods/monthly.png";
 
 
-export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGenerateReport}) => {
+export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGenerateReport, onSavePeriods}) => {
     const [chosenFormat, setChosenFormat] = useState(null);
     const [onChoosingFormats, setOnChoosingFormats] = useState(true);
     const navigate = useNavigate();
-    const [selected, setSelected] = useState(currentlySelected)
+    const [selectedPeriod, setSelectedPeriod] = useState(currentlySelected);
     const [isHiddenPeriod, setIsHiddenPeriod] = useState(true);
     const togglePeriodModal = () => setIsHiddenPeriod(state => !state)
-
 
     const openFormatsList = () => {
         navigate("/report");
       };
     
       const [formats, setFormats] = useState([
-        { id: 1, formatTitle: "Format 1" },
+        { id: 1, formatTitle: "HMIS Format" },
         { id: 2, formatTitle: "Format 2" },
         { id: 3, formatTitle: "Format 3" },
       ]);
@@ -45,24 +44,18 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
       ]);
     
       const handleFormatSelection = (format) => {
-        setOnChoosingFormats(false);
-        setChosenFormat(format);
+        console.log('format ', format.id);
+        if (format.id == 1) {
+            setOnChoosingFormats(false);
+            setChosenFormat(format); 
+        }
       };
 
       const handlePeriodSelection = (period) => {
         if (period.periodTitle === "Monthly") {
           setIsHiddenPeriod(false)
-        }
-      }
-
-      const onSave = (selected) => {
-        if (selected.length > 1) {
-            alert('Please select one period and continue')  // TODO: use better dhis2 ui alerts
         }else{
-            // use selected period
-            // show the report
-            console.log('Selected perios: ', selected);
-
+            alert("Please choose monthly format for now. Thank you!")
         }
       }
     
@@ -157,7 +150,7 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                         <Button
                         className="btn"
                         primary
-                        onClick={onGenerateReport}
+                        onClick={() => onGenerateReport(selectedPeriod)}
                         >
                         {" "}
                         Generate Report{" "}
@@ -169,13 +162,13 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
             </Modal>
 
             {/* periods picker modal */}
-            <Modal onClose={() => setIsHiddenPeriod(true)} hide={isHiddenPeriod} >
+            <Modal onClose={() => setIsHiddenPeriod(true)} hide={isHiddenPeriod} large>
             <ModalTitle>{i18n.t('Select period(s)')}</ModalTitle>
             <ModalContent>
                 <PeriodDimension
                     maxSelections={2}
-                    selectedPeriods={selected}
-                    onSelect={({ items }) => setSelected(items)}
+                    selectedPeriods={selectedPeriod}
+                    onSelect={({ items }) => setSelectedPeriod(items)}
                 />
                 
             </ModalContent>
@@ -185,7 +178,7 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                     <Button
                         primary
                         onClick={() => {
-                            onSave(selected)
+                            onSavePeriods(selectedPeriod)
                             togglePeriodModal()
                         }}
                     >

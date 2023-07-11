@@ -28,89 +28,29 @@ import Staffing from "../../components/report_sections/Staffing";
 import html2pdf from "html2pdf.js";
 
 
-
-// TODO: replace this with the correct querry
-const reportQuery = {
-  me: {
-    resource: "me",
-    params: {
-      fields: ["username, surname, name, organisationUnits[id,name]"],
-    },
-  },
-  dataValueSets: {
-    resource: "dataValueSets",
-    params: {
-        dataSet: "XesKc0UNEKj",
-        period: "202304",
-      orgUnit: "cTBc6Cl0jM8",
-    },
-  },
-};
-
 // TODO: move this up in the modals' folder
-const FormPreviewModal = ({isHiddenPreview, onClosePreview}) => {
-  const [showForm, setShowForm] = useState(true);
+const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
+    const [showForm, setShowForm] = useState(true);
+    
+    const handleReportDownload = () => {
+      let element = document.getElementById("monthly_report_form");
+      let clonedElement = element.cloneNode(true);
 
-// A dynamic alert to communicate success or failure
-const { show } = useAlert(
-  ({ message }) => message,
-  ({ status }) => {
-    if (status === "success") return { success: true };
-    else if (status === "error") return { critical: true };
-    else return {};
-  }
-);
+      let opt = {
+        margin: [2,2,2,2], 
+        filename: "monthly_report.pdf",
+        image: { type: "jpeg", quality: 0.8 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
+        autoPrint: true,
+        printResolution: 'high'
+    };
 
-// run the querry
-const { loading, error, data, refetch } = useDataQuery(reportQuery, {
-  variables: {
-    page: 0,
-    startDate: "2023-02-01",
-    endDate: "2023-06-01",
-    orgUnitID: "OujzhM1lgN5",
-    pageSize: 5,
-    ouMode: "SELECTED",
-  },
-});
-
-if (error) {
-  return <span>ERROR: {error.message}</span>;
-}
-
-//TODO: center this loader and make it a % filling line if possible.
-if (loading) {
-  return (
-    <>
-      <CircularLoader />
-    </>
-  );
-}
-
-if (data) {
-  const message = "SUCCESS: Successfully retrieved datasets values";
-  show({ message, status: "success" });
-  console.log("*** valuesets: ", data.dataValueSets.dataValues);
-}
-
-const handleReportDownload = () => {
-  let element = document.getElementById("monthly_report_form");
-  let clonedElement = element.cloneNode(true);
-
-  let opt = {
-    margin: [2,2,2,2], 
-    filename: "monthly_report.pdf",
-    image: { type: "jpeg", quality: 0.8 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
-    autoPrint: true,
-    printResolution: 'high'
-};
-
-  html2pdf().from(clonedElement).set(opt).save();
-};
+      html2pdf().from(clonedElement).set(opt).save();
+    };
 
   return (
-    <Modal className="report_form_modal" hide={isHiddenPreview} onClose={onClosePreview} position="middle" large>  
+    <Modal className="report_form_modal" hide={isHiddenPreview} onClose={onClosePreview} position="middle" fluid>  
       {/* <ModalTitle>District Hospital Monthly HMIS Report</ModalTitle> */}
       <ModalContent >
         <div className="monthly_report_form" id="monthly_report_form">
@@ -145,7 +85,7 @@ const handleReportDownload = () => {
                     <td style={{ maxWidth: "100px" }}>
                       1.Facility Name / <i> Nom de la formation sanitaire</i>
                     </td>
-                    <td class="special1">{data.me.name}</td>
+                    <td class="special1">data.me.name</td>
                     <td>
                       3.Year/<i>Annee</i>
                     </td>
@@ -201,13 +141,13 @@ const handleReportDownload = () => {
             </table>
           </div>
           <OutPatient data={data} />
-          {/* <Malaria data={data} /> */}
-          {/*<MentalHealth data={data} />
+          <Malaria data={data} /> 
+          <MentalHealth data={data} />
           <Chronic data={data} />
           <PalliativeCare data={data} />
           <CancerScreening data={data} />
           <Hospitalization data={data} />
-          <GenderBasedViolence data={data} />
+          {/*<GenderBasedViolence data={data} />
           <Surgery data={data} />
           <Anesthesia data={data} />
           <Rehabilitation data={data} />
@@ -234,7 +174,7 @@ const handleReportDownload = () => {
               Cancel
           </Button>
           <Button  primary onClick={handleReportDownload}> 
-              Download
+              Download Report
           </Button>
         </ButtonStrip>
       </ModalActions>
