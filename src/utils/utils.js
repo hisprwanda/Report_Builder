@@ -14,7 +14,7 @@ export const isSelectedPeriodWithinRange = (selectedPeriod) => {
     const year2 = parseInt(selectedPeriod.substring(0, 4));
     const month2 = parseInt(selectedPeriod.substring(4, 6));
   
-    if (year1 > year2 || (year1 === year2 && month1 > month2)) {
+    if (year1 > year2 || (year1 === year2 && month1 > month2) || (year1 === year2 && month1 === month2)) {
       return true;
     } else if (year2 > year1 || (year2 === year1 && month2 > month1)) {
       return false;

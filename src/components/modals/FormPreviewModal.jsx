@@ -39,7 +39,7 @@ const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
 
       let opt = {
         margin: [2,2,2,2], 
-        filename: "monthly_report.pdf",
+        filename: "hmis_monthly_report.pdf",
         image: { type: "jpeg", quality: 0.8 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },

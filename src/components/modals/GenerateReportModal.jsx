@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Button, Modal, ModalTitle, ModalContent, ModalActions, ButtonStrip } from '@dhis2/ui'
+import { Button, Modal, ModalTitle, ModalContent, ModalActions, ButtonStrip, SingleSelect, SingleSelectOption } from '@dhis2/ui'
 import format1_preview from '../../assets/images/format1_preview.png'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
@@ -18,7 +18,7 @@ import quarterly from "../../assets/images/periods/quarterly.png";
 import monthly from "../../assets/images/periods/monthly.png";
 
 
-export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGenerateReport, onSavePeriods, generateBtnDisabled}) => {
+export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGenerateReport, onSavePeriods, generateBtnDisabled, orgUnitsData}) => {
     const [chosenFormat, setChosenFormat] = useState(null);
     const [onChoosingFormats, setOnChoosingFormats] = useState(true);
     const navigate = useNavigate();
@@ -68,8 +68,27 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                     <div className="modal">
                     <div className="modal_header">
                         <div className="title">
-                        <span>Generate New Report </span>
+                            <span>Generate New Report </span>
                         </div>
+                        <div>
+                            <p> Choose an organisation unit to generate data for</p>
+                            <SingleSelect className="select" 
+                                onChange={(selected)=> console.log('selected ou:', selected.selected)} 
+                                placeholder="Select organization unit"
+                                filterable
+                                selected={[]}
+                            >
+                                {orgUnitsData? orgUnitsData.map((ou, key)=>
+                                    <SingleSelectOption label={ou.name} value={ou.id} key={key} />
+                                )
+                                :
+                                ''
+                                }
+                                {/* // <SingleSelectOption label='org unit 2' value='value2' key='{key}' /> */}
+                                {/* // <SingleSelectOption label='org unit 3' value='value3' key='{key}' /> */}
+                            </SingleSelect>
+                        </div>
+                        <br></br>
                         {chosenFormat ? (
                             <div>
                             <p>What time format do you need?</p>
@@ -143,7 +162,11 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                     </div>
 
                     <div className="bottom_btns">
-                        <Button className="btn" secondary onClick={onClose}>
+                        <Button className="btn" secondary onClick={() => {
+                            onClose()
+                            setChosenFormat(null)
+                        }
+                            }>
                             {" "}
                             Cancel{" "}
                         </Button>

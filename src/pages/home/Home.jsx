@@ -2,21 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./home.scss";
 import  FormPreviewModal  from "../../components/modals/FormPreviewModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GenerateReportModal from "../../components/modals/GenerateReportModal";
 import { useConfig, useDataQuery, useAlert } from "@dhis2/app-runtime";
 import { Button, CircularLoader,Modal, ModalTitle, ModalContent, ModalActions, ButtonStrip } from "@dhis2/ui";
 import { isSelectedPeriodWithinRange } from "../../utils/utils";
 
 
-// TODO: replace this with the correct querry
-const reportQuery = {
-  orgUnit: {
+const orgUnitsListQuery = {
+  orgUnits: {
     resource:"organisationUnits",
+    id: ({ouID}) => ouID,
     params:{
-      fields: ["fields=id,level,code,shortName,displayName,parent,user,programs,name,path,ancestors[id,name]"]
+      includeDescendants:true,
+      level:6,
+      paging:false,
+      fields:"id,name,shortname,code,level"
     }
-  },
+  }
+}
+
+  const dataValueSetsQuery = {
   dataValueSets: {
     resource: "dataValueSets",
     params:({period}) => ({
@@ -32,10 +38,9 @@ const userInfoQuery = {
   me: {
     resource: "me",
     params: {
-      fields: ["username, surname, name, organisationUnits[id,name]"],
+      fields: "id,displayName,email,name,phoneNumber,organisationUnits[id,name]",
     },
   },
-  
 };
 
 
@@ -45,12 +50,25 @@ const Home = () => {
   const { baseUrl, apiVersion } = useConfig();
   const [selectedPeriod, setSelectedPeriod] = useState('');
   const [generateBtnDisabled, setGenerateBtnDisabled] = useState(true);
-  
-  // run the querry
-  const { loading, error, data, refetch, called } = useDataQuery(reportQuery, {
-    variables: {period: selectedPeriod},
+  const [selectedOrgUnit, setSelectedOrgUnit] = useState(null);
+  const [userOrgUnitsList, setUserOrgUnitsList] = useState(null);
+
+  // run the datasets querry
+  const { loading:loadingDataValueSets, error:errorDataValueSets, data:dataDataValueSets, refetch:refetchDataValueSets } = useDataQuery(dataValueSetsQuery, {
+    variables: {period: selectedPeriod,orgUnit: selectedOrgUnit},
     lazy: true,
   });
+  
+  // run the ou lists querry
+  const { loading:loadingOrgUnits, error:errorOrgUnits, data:dataOrgUnits, refetch:refetchOrgUnits } = useDataQuery(orgUnitsListQuery, {
+    lazy: true,
+  });
+
+  // run the ou lists querry
+  const { loading:loadingUserInfo, error:errorUserInfo, data:dataUserInfo, refetch:refetchUserInfo } = useDataQuery(userInfoQuery, {
+    lazy: false,
+  });
+
 
    // A dynamic alert to communicate success or failure
    const { show } = useAlert(
@@ -62,11 +80,11 @@ const Home = () => {
     }
   );
 
-  if (error) {
-    return <span>ERROR: {error.message}</span>;
+  if (errorDataValueSets) {
+    return <span>ERROR: {errorDataValueSets.message}</span>;
   }
 
-  if (loading) {
+  if (loadingDataValueSets) {
     return (
         <div style={{
           display: 'flex',
@@ -78,25 +96,26 @@ const Home = () => {
     );
   }
 
-  if (data) {
+  if (dataDataValueSets) {
     const message = "SUCCESS: Successfully retrieved datasets values";
     show({ message, status: "success" });
     // console.log("*** valuesets: ", data);
   }
 
-  {!called && (
-    <p>{'No data yet - click "Refech" to query the list'}</p>
-  )}
+  if (dataOrgUnits) {
+    // console.log("*** org units: ", );
+  }
 
-  // checking numberics
+  // TODO: move this to utils
+  // checking numberics 
   const containsOnlyNumeric = (inputString) => {
     return /^[0-9]+$/.test(inputString);
   }
 
   const openUsersDetails = (userId) => {
-    console.log("User data: ", data.me.id);
+    console.log("User data: ", dataDataValueSets.me.id);
     window.open(
-      `${baseUrl}/dhis-web-user/index.html#/users/edit/${data.me.id}`,
+      `${baseUrl}/dhis-web-user/index.html#/users/edit/${dataDataValueSets.me.id}`,
       "_blank"
     );
   };
@@ -114,7 +133,7 @@ const Home = () => {
       setIsHiddenPreview(false)
       setSelectedPeriod(period[0].id)
       // refetching data on generate 
-      refetch({
+      refetchDataValueSets({
         period: selectedPeriod
       })
     }
@@ -138,6 +157,23 @@ const Home = () => {
       setGenerateBtnDisabled(false)
     }
   }
+
+  useEffect(() => {
+    if(dataUserInfo){
+      const userOuId = dataUserInfo.me.organisationUnits[0].id
+      refetchOrgUnits({
+        ouID: userOuId
+      })
+
+    }
+  }, [dataUserInfo]);
+
+  useEffect(() => {
+    if(dataOrgUnits){
+      setUserOrgUnitsList(dataOrgUnits.orgUnits.organisationUnits)
+
+    }
+  }, [dataOrgUnits]);
 
   return (
     <div className="home">
@@ -188,13 +224,14 @@ const Home = () => {
           onGenerateReport={onGenerateReport}
           onSavePeriods={onSavePeriods}
           generateBtnDisabled={generateBtnDisabled}
+          orgUnitsData={userOrgUnitsList}
         />
         {/* modal to preview the report and download */}
-        {data? 
+        {dataDataValueSets? 
           <FormPreviewModal 
             isHiddenPreview={isHiddenPreview} 
             onClosePreview={onClosePreview}
-            data={data}
+            data={dataDataValueSets}
           />
         :
         ""
