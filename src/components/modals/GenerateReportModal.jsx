@@ -44,14 +44,12 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
       ]);
     
       const handleFormatSelection = (format) => {
-        console.log('format ', format.id);
         if (format.id == 1) {
             setOnChoosingFormats(false);
             setChosenFormat(format); 
         }
       };
 
-      // TODO: limit periods to fixed periods only. 
       const handlePeriodSelection = (period) => {
         if (period.periodTitle === "Monthly") {
           setIsHiddenPeriod(false)
@@ -110,22 +108,23 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                         {/* available formats for choose from */}
                         <div className="available_formats">
                         {chosenFormat
-                            ? periods.map((period, index) => (
-                                <div className="format_placeholder">
-                                <img
-                                    src={period.periodImage}
-                                    alt="Format Image"
-                                    className="period_image"
-                                    onClick={() => handlePeriodSelection(period)}
-                                    />
+                            ? periods.map((period, key) => (
+                                <div className="format_placeholder" key={key}>
+                                    <img
+                                        src={period.periodImage}
+                                        alt="Format Image"
+                                        className="period_image"
+                                        onClick={() => handlePeriodSelection(period)}
+                                        />
 
-                                <span className="label">{period.periodTitle}</span>
+                                    <span className="label">{period.periodTitle}</span>
                                 </div>
                             ))
-                            : formats.map((format, index) => (
+                            : formats.map((format, key) => (
                                 <div
-                                className="format_placeholder"
-                                onClick={() => handleFormatSelection(format)}
+                                    className="format_placeholder"
+                                    onClick={() => handleFormatSelection(format)}
+                                    key={key}
                                 >
                                 <img
                                     src={format1_preview}

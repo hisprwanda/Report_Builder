@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./home.scss";
-import  FormPreviewModal  from "./FormPreviewModal";
+import  FormPreviewModal  from "../../components/modals/FormPreviewModal";
 import { useState } from "react";
 import GenerateReportModal from "../../components/modals/GenerateReportModal";
 import { useConfig, useDataQuery, useAlert } from "@dhis2/app-runtime";
