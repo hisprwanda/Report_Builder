@@ -51,11 +51,12 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
         }
       };
 
+      // TODO: limit periods to fixed periods only. 
       const handlePeriodSelection = (period) => {
         if (period.periodTitle === "Monthly") {
           setIsHiddenPeriod(false)
         }else{
-            alert("Please choose monthly format for now. Thank you!")
+            alert("Please choose monthly format for now. Thank you!")   // TODO: Replace all simple alerts with dhis2 ui alerts
         }
       }
     

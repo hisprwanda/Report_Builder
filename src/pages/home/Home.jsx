@@ -10,20 +10,31 @@ import { Button, CircularLoader,Modal, ModalTitle, ModalContent, ModalActions, B
 
 // TODO: replace this with the correct querry
 const reportQuery = {
-  me: {
-    resource: "me",
-    params: {
-      fields: ["username, surname, name, organisationUnits[id,name]"],
-    },
+  orgUnit: {
+    resource:"organisationUnits",
+    params:{
+      fields: ["fields=id,level,code,shortName,displayName,parent,user,programs,name,path,ancestors[id,name]"]
+    }
   },
   dataValueSets: {
     resource: "dataValueSets",
     params:({period}) => ({
       dataSet: "XesKc0UNEKj",
       period: period,
-      orgUnit: "cTBc6Cl0jM8",
+      orgUnit: "cTBc6Cl0jM8", // TODO: use the user's org unit by default
     }),
   },
+};
+
+// userInfo query
+const userInfoQuery = {
+  me: {
+    resource: "me",
+    params: {
+      fields: ["username, surname, name, organisationUnits[id,name]"],
+    },
+  },
+  
 };
 
 
@@ -33,7 +44,7 @@ const Home = () => {
   const { baseUrl, apiVersion } = useConfig();
   const [selectedPeriod, setSelectedPeriod] = useState('');
 
-  /*
+
   const getCurrentPeriod = () => {
     let currentDate = new Date();
     let year = currentDate.getFullYear();
@@ -41,7 +52,6 @@ const Home = () => {
     if (month < 10) { month = '0' + month }
     return `${year}${month}`;
   }
-  */
   
   // run the querry
   const { loading, error, data, refetch, called } = useDataQuery(reportQuery, {
@@ -103,7 +113,8 @@ const Home = () => {
       setIsHiddenPreview(false)
       setSelectedPeriod(period[0].id)
 
-      //TODO: 
+      // TODO: check whether the period is above the current period and do refetch
+
       // refetching data on generate 
       refetch({
         period: selectedPeriod
@@ -115,8 +126,10 @@ const Home = () => {
 
   
   const onSavePeriods = (selectedPeriod) => {
+    console.log('selected p', selectedPeriod)
     if (selectedPeriod.length > 1) {
-        alert('Please select one period and continue')  // TODO: use better dhis2 ui alerts
+      const message = "ERROR: Please select one period and continue";
+      show({ message, status: "error" });
     }else{
         setSelectedPeriod(selectedPeriod[0].id)
         // show the report
@@ -148,7 +161,7 @@ const Home = () => {
         >
           <span className="title"> Report Format</span>
           <span className="content">
-            Something about changing report formats.
+            Creating and configuring new report formats.
           </span>
           <span className="link"> Edit Report Formats</span>
         </Link>
@@ -160,7 +173,7 @@ const Home = () => {
           <span className="title"> Overall Report</span>
           <span className="content">
             {" "}
-            Something about generating overall reports.
+            Generating overall reports based on pre-defined formats.
           </span>
           <span className="link"> Create New Report</span>
         </Link>

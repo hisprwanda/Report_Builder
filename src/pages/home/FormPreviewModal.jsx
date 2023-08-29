@@ -32,6 +32,8 @@ import html2pdf from "html2pdf.js";
 const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
     const [showForm, setShowForm] = useState(true);
     
+    // FIXME: this download fails when the report is full of alot of data. find a more efficient one
+    
     const handleReportDownload = () => {
       let element = document.getElementById("monthly_report_form");
       let clonedElement = element.cloneNode(true);
@@ -51,6 +53,7 @@ const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
 
   return (
     <Modal className="report_form_modal" hide={isHiddenPreview} onClose={onClosePreview} position="middle" fluid>  
+      {/* TODO: add this tittle, center it and give it a log just like the one in WHO report */}
       {/* <ModalTitle>District Hospital Monthly HMIS Report</ModalTitle> */}
       <ModalContent >
         <div className="monthly_report_form" id="monthly_report_form">
@@ -140,14 +143,15 @@ const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
               </tbody>
             </table>
           </div>
+          {/* TODO: add missing data for some data sets to mach the currrent production server */}
           <OutPatient data={data} />
           <Malaria data={data} /> 
-          <MentalHealth data={data} />
+           {/*<MentalHealth data={data} />
           <Chronic data={data} />
           <PalliativeCare data={data} />
           <CancerScreening data={data} />
           <Hospitalization data={data} />
-          {/*<GenderBasedViolence data={data} />
+         <GenderBasedViolence data={data} />
           <Surgery data={data} />
           <Anesthesia data={data} />
           <Rehabilitation data={data} />
