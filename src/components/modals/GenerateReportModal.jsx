@@ -18,7 +18,7 @@ import quarterly from "../../assets/images/periods/quarterly.png";
 import monthly from "../../assets/images/periods/monthly.png";
 
 
-export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGenerateReport, onSavePeriods}) => {
+export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGenerateReport, onSavePeriods, generateBtnDisabled}) => {
     const [chosenFormat, setChosenFormat] = useState(null);
     const [onChoosingFormats, setOnChoosingFormats] = useState(true);
     const navigate = useNavigate();
@@ -145,16 +145,17 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
 
                     <div className="bottom_btns">
                         <Button className="btn" secondary onClick={onClose}>
-                        {" "}
-                        Cancel{" "}
+                            {" "}
+                            Cancel{" "}
                         </Button>
                         <Button
-                        className="btn"
-                        primary
-                        onClick={() => onGenerateReport(selectedPeriod)}
-                        >
-                        {" "}
-                        Generate Report{" "}
+                            className="btn"
+                            primary
+                            onClick={() => onGenerateReport(selectedPeriod)}
+                            disabled={generateBtnDisabled}
+                            >
+                            {" "}
+                            Generate Report{" "}
                         </Button>
                     </div>
                     </div>
@@ -182,6 +183,7 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                             onSavePeriods(selectedPeriod)
                             togglePeriodModal()
                         }}
+                        disabled={selectedPeriod.length == 0? true:false}
                     >
                         {i18n.t('Save')}
                     </Button>

@@ -43,7 +43,7 @@ const Home = () => {
   const [isHiddenPreview, setIsHiddenPreview] = useState(true);
   const { baseUrl, apiVersion } = useConfig();
   const [selectedPeriod, setSelectedPeriod] = useState('');
-
+  const [generateBtnDisabled, setGenerateBtnDisabled] = useState(true);
 
   const getCurrentPeriod = () => {
     let currentDate = new Date();
@@ -96,6 +96,11 @@ const Home = () => {
     <p>{'No data yet - click "Refech" to query the list'}</p>
   )}
 
+  // checking numberics
+  const containsOnlyNumeric = (inputString) => {
+    return /^[0-9]+$/.test(inputString);
+  }
+
   const openUsersDetails = (userId) => {
     console.log("User data: ", data.me.id);
     window.open(
@@ -127,14 +132,19 @@ const Home = () => {
   
   const onSavePeriods = (selectedPeriod) => {
     console.log('selected p', selectedPeriod)
-    if (selectedPeriod.length > 1) {
+    if (selectedPeriod.length > 1 ) {
       const message = "ERROR: Please select one period and continue";
       show({ message, status: "error" });
+      setGenerateBtnDisabled(true)
+    }else if (!containsOnlyNumeric(selectedPeriod[0].id)){
+      // a workaround to know whether the user has selected only fixed perios
+      const message = "ERROR: Please select from fixed periods only for now.";
+      show({ message, status: "error" });
+      setGenerateBtnDisabled(true)
     }else{
-        setSelectedPeriod(selectedPeriod[0].id)
-        // show the report
-        console.log('Selected periods: ', selectedPeriod[0].id);
-
+      // show the report
+      setSelectedPeriod(selectedPeriod[0].id)
+      setGenerateBtnDisabled(false)
     }
   }
 
@@ -186,6 +196,7 @@ const Home = () => {
           onClose={onClose}
           onGenerateReport={onGenerateReport}
           onSavePeriods={onSavePeriods}
+          generateBtnDisabled={generateBtnDisabled}
         />
         {/* modal to preview the report and download */}
         {data? 
