@@ -28,7 +28,6 @@ import Staffing from "../report_sections/Staffing";
 import html2pdf from "html2pdf.js";
 
 
-// TODO: move this up in the modals' folder
 const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
     const [showForm, setShowForm] = useState(true);
     

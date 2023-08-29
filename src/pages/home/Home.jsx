@@ -6,6 +6,7 @@ import { useState } from "react";
 import GenerateReportModal from "../../components/modals/GenerateReportModal";
 import { useConfig, useDataQuery, useAlert } from "@dhis2/app-runtime";
 import { Button, CircularLoader,Modal, ModalTitle, ModalContent, ModalActions, ButtonStrip } from "@dhis2/ui";
+import { isSelectedPeriodWithinRange } from "../../utils/utils";
 
 
 // TODO: replace this with the correct querry
@@ -44,14 +45,6 @@ const Home = () => {
   const { baseUrl, apiVersion } = useConfig();
   const [selectedPeriod, setSelectedPeriod] = useState('');
   const [generateBtnDisabled, setGenerateBtnDisabled] = useState(true);
-
-  const getCurrentPeriod = () => {
-    let currentDate = new Date();
-    let year = currentDate.getFullYear();
-    let month = currentDate.getMonth();
-    if (month < 10) { month = '0' + month }
-    return `${year}${month}`;
-  }
   
   // run the querry
   const { loading, error, data, refetch, called } = useDataQuery(reportQuery, {
@@ -73,7 +66,6 @@ const Home = () => {
     return <span>ERROR: {error.message}</span>;
   }
 
-  //TODO: center this loader and make it a % filling line if possible.
   if (loading) {
     return (
         <div style={{
@@ -113,25 +105,24 @@ const Home = () => {
   const onClosePreview = () =>  setIsHiddenPreview(true);
 
   const onGenerateReport = async (period) => {
-    if (period.length > 0) {
+    if (period.length < 0) {
+      alert("Please choose your prefered format and period for the report.")
+    }else if (!isSelectedPeriodWithinRange(period[0].id)) {
+      alert("The period you selected is above the current reporting period. Please try again.")
+    }else{
       console.log('Generating report for ...', period[0].id);
       setIsHiddenPreview(false)
       setSelectedPeriod(period[0].id)
-
-      // TODO: check whether the period is above the current period and do refetch
-
       // refetching data on generate 
       refetch({
         period: selectedPeriod
       })
-    }else{
-      alert("Please choose your prefered format and period for the report.")
     }
   }
 
   
   const onSavePeriods = (selectedPeriod) => {
-    console.log('selected p', selectedPeriod)
+    console.log('selected p', selectedPeriod[0].id)
     if (selectedPeriod.length > 1 ) {
       const message = "ERROR: Please select one period and continue";
       show({ message, status: "error" });
