@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./home.scss";
 import  FormPreviewModal  from "../../components/modals/FormPreviewModal";
@@ -113,7 +112,7 @@ const Home = () => {
   if (dataDataValueSets) {
     const message = "SUCCESS: Successfully retrieved datasets values";
     show({ message, status: "success" });
-    // console.log("*** valuesets: ", data);
+    
   }
 
 

@@ -26,6 +26,7 @@ import MedicalImagery from "../report_sections/MedicalImagery";
 import Ambulance from "../report_sections/Ambulance";
 import Staffing from "../report_sections/Staffing";
 import html2pdf from "html2pdf.js";
+import { WarningModal } from './WarningModal';
 
 
 const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
@@ -49,6 +50,18 @@ const FormPreviewModal = ({isHiddenPreview, onClosePreview, data}) => {
 
       html2pdf().from(clonedElement).set(opt).save();
     };
+
+    // In case an organization unit doent have data , show a message to the user to prevent null pointer errors
+    if (!data.dataValueSets.dataValues) {
+      return(
+        <WarningModal
+        title='No data available in'
+        content='The facility you selected does not have data on that period. Please try a different period'
+        btnName='Try Again'
+        hidden={false}
+        />
+        ) 
+      }
 
   return (
     <Modal className="report_form_modal" hide={isHiddenPreview} onClose={onClosePreview} position="middle" fluid>  
