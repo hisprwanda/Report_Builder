@@ -25,39 +25,41 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
     const [selectedPeriod, setSelectedPeriod] = useState(currentlySelected);
     const [isHiddenPeriod, setIsHiddenPeriod] = useState(true);
     const togglePeriodModal = () => setIsHiddenPeriod(state => !state)
-
+    const [selectedOrgUnit, setSelectedOrgUnit] = useState('');
+    
     const openFormatsList = () => {
         navigate("/report");
-      };
+    };
     
-      const [formats, setFormats] = useState([
+    //TODO: these formats will later be stored in & retrieved from dhis2 datastore
+    const [formats, setFormats] = useState([
         { id: 1, formatTitle: "HMIS Format" },
         { id: 2, formatTitle: "Format 2" },
         { id: 3, formatTitle: "Format 3" },
-      ]);
+    ]);
     
+      //TODO: these periods will later be stored in & retrieved from dhis2 datastore
       const [periods, setPeriods] = useState([
         { id: 1, periodTitle: "Custom", periodImage: custom },
         { id: 2, periodTitle: "Yearly", periodImage: yearly },
         { id: 3, periodTitle: "Quarterly", periodImage: quarterly },
         { id: 4, periodTitle: "Monthly", periodImage: monthly },
-      ]);
+    ]);
     
-      const handleFormatSelection = (format) => {
+    const handleFormatSelection = (format) => {
         if (format.id == 1) {
             setOnChoosingFormats(false);
             setChosenFormat(format); 
         }
-      };
-
-      const handlePeriodSelection = (period) => {
+    };
+    
+    const handlePeriodSelection = (period) => {
         if (period.periodTitle === "Monthly") {
-          setIsHiddenPeriod(false)
+            setIsHiddenPeriod(false)
         }else{
             alert("Please choose monthly format for now. Thank you!")   // TODO: Replace all simple alerts with dhis2 ui alerts
         }
-      }
-    
+    }
     return (
         <>
             {/* main modal */}
@@ -73,10 +75,10 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                         <div>
                             <p> Choose an organisation unit to generate data for</p>
                             <SingleSelect className="select" 
-                                onChange={(selected)=> console.log('selected ou:', selected.selected)} 
+                                onChange={(selected)=> setSelectedOrgUnit(selected.selected)} 
                                 placeholder="Select organization unit"
                                 filterable
-                                selected={[]}
+                                selected={selectedOrgUnit}
                             >
                                 {orgUnitsData? orgUnitsData.map((ou, key)=>
                                     <SingleSelectOption label={ou.name} value={ou.id} key={key} />
@@ -84,8 +86,6 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                                 :
                                 ''
                                 }
-                                {/* // <SingleSelectOption label='org unit 2' value='value2' key='{key}' /> */}
-                                {/* // <SingleSelectOption label='org unit 3' value='value3' key='{key}' /> */}
                             </SingleSelect>
                         </div>
                         <br></br>
@@ -173,7 +173,7 @@ export const GenerateReportModal = ({hide, onClose, currentlySelected = [], onGe
                         <Button
                             className="btn"
                             primary
-                            onClick={() => onGenerateReport(selectedPeriod)}
+                            onClick={() => onGenerateReport(selectedPeriod, selectedOrgUnit)}
                             disabled={generateBtnDisabled}
                             >
                             {" "}

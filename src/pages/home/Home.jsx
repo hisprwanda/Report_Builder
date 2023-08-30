@@ -25,10 +25,10 @@ const orgUnitsListQuery = {
   const dataValueSetsQuery = {
   dataValueSets: {
     resource: "dataValueSets",
-    params:({period}) => ({
+    params:({period, ouID}) => ({
       dataSet: "XesKc0UNEKj",
       period: period,
-      orgUnit: "cTBc6Cl0jM8", // TODO: use the user's org unit by default
+      orgUnit: ouID
     }),
   },
 };
@@ -48,14 +48,12 @@ const Home = () => {
   const [isHiden, setIsHiden] = useState(true);
   const [isHiddenPreview, setIsHiddenPreview] = useState(true);
   const { baseUrl, apiVersion } = useConfig();
-  const [selectedPeriod, setSelectedPeriod] = useState('');
+  // const [selectedPeriod, setSelectedPeriod] = useState('');
   const [generateBtnDisabled, setGenerateBtnDisabled] = useState(true);
-  const [selectedOrgUnit, setSelectedOrgUnit] = useState(null);
   const [userOrgUnitsList, setUserOrgUnitsList] = useState(null);
 
   // run the datasets querry
   const { loading:loadingDataValueSets, error:errorDataValueSets, data:dataDataValueSets, refetch:refetchDataValueSets } = useDataQuery(dataValueSetsQuery, {
-    variables: {period: selectedPeriod,orgUnit: selectedOrgUnit},
     lazy: true,
   });
   
@@ -69,6 +67,22 @@ const Home = () => {
     lazy: false,
   });
 
+
+  useEffect(() => {
+    if(dataUserInfo){
+      const userOuId = dataUserInfo.me.organisationUnits[0].id
+      refetchOrgUnits({
+        ouID: userOuId
+      })
+    }
+  }, [dataUserInfo]);
+
+  useEffect(() => {
+    if(dataOrgUnits){
+      setUserOrgUnitsList(dataOrgUnits.orgUnits.organisationUnits)
+    }
+  }, [dataOrgUnits]);
+  
 
    // A dynamic alert to communicate success or failure
    const { show } = useAlert(
@@ -102,9 +116,6 @@ const Home = () => {
     // console.log("*** valuesets: ", data);
   }
 
-  if (dataOrgUnits) {
-    // console.log("*** org units: ", );
-  }
 
   // TODO: move this to utils
   // checking numberics 
@@ -113,9 +124,8 @@ const Home = () => {
   }
 
   const openUsersDetails = (userId) => {
-    console.log("User data: ", dataDataValueSets.me.id);
     window.open(
-      `${baseUrl}/dhis-web-user/index.html#/users/edit/${dataDataValueSets.me.id}`,
+      `${baseUrl}/dhis-web-user/index.html#/users/edit/${dataUserInfo.me.id}`,
       "_blank"
     );
   };
@@ -123,19 +133,18 @@ const Home = () => {
   const onClose = () => setIsHiden(true);
   const onClosePreview = () =>  setIsHiddenPreview(true);
 
-  const onGenerateReport = async (period) => {
-    if (period.length < 0) {
+  const onGenerateReport = async (selectedPeriod, selectedOuID) => {
+    if (selectedPeriod.length < 0) {
       alert("Please choose your prefered format and period for the report.")
-    }else if (!isSelectedPeriodWithinRange(period[0].id)) {
+    }else if (!isSelectedPeriodWithinRange(selectedPeriod[0].id)) {
       alert("The period you selected is above the current reporting period. Please try again.")
     }else{
-      console.log('Generating report for ...', period[0].id);
-      setIsHiddenPreview(false)
-      setSelectedPeriod(period[0].id)
       // refetching data on generate 
       refetchDataValueSets({
-        period: selectedPeriod
+        period: selectedPeriod[0].id,
+        ouID: selectedOuID
       })
+      setIsHiddenPreview(false)
     }
   }
 
@@ -153,27 +162,12 @@ const Home = () => {
       setGenerateBtnDisabled(true)
     }else{
       // show the report
-      setSelectedPeriod(selectedPeriod[0].id)
+      // setSelectedPeriod(selectedPeriod[0].id)
       setGenerateBtnDisabled(false)
     }
   }
 
-  useEffect(() => {
-    if(dataUserInfo){
-      const userOuId = dataUserInfo.me.organisationUnits[0].id
-      refetchOrgUnits({
-        ouID: userOuId
-      })
-
-    }
-  }, [dataUserInfo]);
-
-  useEffect(() => {
-    if(dataOrgUnits){
-      setUserOrgUnitsList(dataOrgUnits.orgUnits.organisationUnits)
-
-    }
-  }, [dataOrgUnits]);
+  
 
   return (
     <div className="home">
